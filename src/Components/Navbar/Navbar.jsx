@@ -11,7 +11,7 @@ const PAGES = [
 function Navbar() {
 
   const mapper = (page) => (
-    <li>
+    <li key={page.destination}>
       <Link to={page.destination}>
         {page.label}
       </Link>
