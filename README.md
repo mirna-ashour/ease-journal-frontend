@@ -24,3 +24,5 @@ The frontend of a journaling application powered by OpenAI's GPT3. Offers journa
 - Users
 - Journals
 
+## Flask API
+- [Ease Journal](https://github.com/mirna-ashour/ease-journal)
