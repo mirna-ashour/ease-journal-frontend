@@ -1,3 +1,6 @@
+![Logo](src/logo.svg)
+[Our Own Logo Coming Soon]
+
 # ease-journal-frontend
 The frontend of a journaling application powered by OpenAI's GPT3. Offers journaling insights and prompts based on the user's journal entries.
 
@@ -43,4 +46,3 @@ This React frontend interacts with the Ease Journal Flask API for backend operat
 
 ## Contributing
 Contributions to the project are welcome! Please refer to the project's issues and pull requests for areas of improvement or feature additions.
-
