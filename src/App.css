@@ -6,14 +6,14 @@
 
 html {
   --poppy: hsla(356, 74%, 52%, 1);
-  --cambridge-blue: hsla(132, 27%, 63%, 1);
+  --sky-blue: rgb(171, 213, 236);
   --lemon-chiffon: hsla(58, 74%, 85%, 1);
   --buff: hsla(27, 64%, 65%, 1);
   --bistre: hsla(10, 31%, 19%, 1);
   --off-white: hsla(45, 29%, 97%, 1);
 
   --background-color: var(--off-white);
-  --accent-color: var(--cambridge-blue);
+  --accent-color: var(--sky-blue);
   background-color: var(--background-color);
 }
 
