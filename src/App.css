@@ -155,18 +155,20 @@ nav a:focus {
 .user-container {
   border: 2px solid var(--accent-color);
   margin: 1rem 0;
-  padding: 2rem;
-  display: grid;
-  grid-template-columns: 1fr 150px;
+  padding: 1.5rem;
   border-radius: 5px;
 }
 
-.category-container p,
 .category-container h2,
-.journal-container p,
 .journal-container h2,
-.user-container p,
 .user-container h2 {
+  margin-top: 0; /* Remove margin from the top of the heading */
+  margin-bottom: 1rem; /* Add some space below headings */
+}
+
+.category-container p,
+.journal-container p,
+.user-container p {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1.2rem; /* Reduce font size slightly for better readability */
 }
