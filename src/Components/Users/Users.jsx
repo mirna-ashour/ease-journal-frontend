@@ -94,8 +94,11 @@ function Users() {
 
 			{users.map((user) => (
 				<div key={user.user_id} className="user-container">
-					 <h2>{user.first_name}</h2>
-					 <p>Date of Birth: {user.dob}</p>
+					 <h2>User_id: {user.user_id}</h2>
+					 <p>First Name: {user.first_name}</p>
+					 <p>Last Name: {user.last_name}</p>
+					 <p>DOB: {user.dob}</p>
+					 <p>Email: {user.email}</p>
 				</div>
 			))}
 		</div>

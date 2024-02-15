@@ -36,8 +36,11 @@ function Journals() {
 
 			{journals.map((journal) => (
 				<div className="category-container">
-					 <h2>{journal.title}</h2>
-					 <p>Timestamp: {journal.timestamp}</p>
+					 <h2>Time Stamp: {journal.timestamp}</h2>
+					 <p>Title: {journal.title}</p>
+					 <p>Prompt: {journal.prompt}</p>
+					 <p>Content: {journal.content}</p>
+					 <p>Modified: {journal.modified}</p>
 				</div>
 			))}
 		</div>
