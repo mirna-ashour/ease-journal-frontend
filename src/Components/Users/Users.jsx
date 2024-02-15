@@ -23,7 +23,7 @@ function AddUserForm({ setError, fetchUsers }) {
 			    if (e.response && e.response.data && e.response.data.message) {
 			        setError(e.response.data.message);
 			    } else {
-			        setError('There was a problem adding Category');
+			        setError('There was a problem adding a user');
 			    }
 			});
 	};
@@ -68,8 +68,12 @@ function Users() {
 			const usersArray = keys.map((key) => usersObject[key]);
 			setUsers(usersArray);
 		}) // something good
-		.catch(() => {
-			setError('Something went wrong'); 
+		.catch((e) => {
+			if (e.response && e.response.data && e.response.data.message) {
+				setError(e.response.data.message);
+			} else {
+				setError('There was a problem fetching all users.');
+			}
 		}); // something bad
 	};
 

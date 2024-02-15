@@ -15,8 +15,12 @@ function Journals() {
 					const journalsArray = keys.map((key) => journalsObject[key]);
 					setJournals(journalsArray);
 				}) // something good
-				.catch(() => {
-					setError('Something went wrong'); 
+				.catch((e) => {
+					if (e.response && e.response.data && e.response.data.message) {
+						setError(e.response.data.message);
+					} else {
+						setError('There was a problem fetching all journals.');
+					}
 				}); // something bad
 		},
 		[],

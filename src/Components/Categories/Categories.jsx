@@ -36,7 +36,11 @@ function AddCategoryForm({ setError, fetchCategories }) {
 			    if (e.response && e.response.data && e.response.data.message) {
 			        setError(e.response.data.message);
 			    } else {
-			        setError('There was a problem adding Category');
+					if (e.response && e.response.data && e.response.data.message) {
+						setError(e.response.data.message);
+					} else {
+						setError('There was a problem adding the category');
+					}
 			    }
 			});
 	};
@@ -70,7 +74,13 @@ function Categories() {
 				const categoriesArray = keys.map((key) => categoriesObject[key]);
 				setCategories(categoriesArray);
 			}) // something good
-			.catch(() => { setError('Something went wrong'); }); // something bad
+			.catch((e) => { 
+				if (e.response && e.response.data && e.response.data.message) {
+			        setError(e.response.data.message);
+			    } else {
+			        setError('There was a problem fetching all categories.');
+			    }
+			}); // something bad
 	};
 
 	useEffect(
