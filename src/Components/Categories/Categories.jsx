@@ -77,21 +77,6 @@ function Categories() {
 		fetchCategories,
 		[],
 	);
-
-	function ListCategories({ categories }) {
-		return (
-		  <div className="list-categories">
-			<h2>All Categories</h2>
-			{categories.map((category) => (
-			  <div key={category.category_id} className="category-container">
-				<h3>{category.title}</h3>
-				<p>Created: {category.created}</p>
-			  </div>
-			))}
-		  </div>
-		);
-	  }
-
 	  
 	return (
 		<div className="wrapper">
@@ -106,7 +91,6 @@ function Categories() {
 			)}
 
 			<AddCategoryForm setError={setError} fetchCategories={fetchCategories} />
-			<ListCategories categories={categories} />
 
 			{categories.map((category) => (
 				<div key={category.category_id} className="category-container">
