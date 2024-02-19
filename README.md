@@ -1,5 +1,11 @@
-![Logo](src/EaseJournalLOGO_V1_vector.png)
-:[EASE-JOURNAL]:
+<p align="center">
+    <img src="src/EaseJournalLOGO_V1_vector.png" alt="logo">
+</p>
+
+<p align="center">
+[EASE-JOURNAL]
+</p>
+
 # ease-journal-frontend
 The frontend of a journaling application powered by OpenAI's GPT3. Offers journaling insights and prompts based on the user's journal entries.
 
