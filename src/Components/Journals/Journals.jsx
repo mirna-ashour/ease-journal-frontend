@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import { BACKEND_URL } from '../../constants';
+
+const JOURNALS_ENDPOINT = `${BACKEND_URL}/journals`;
+
 function getCurrentTimestamp() {
     const currentDate = new Date();
 
@@ -28,7 +32,7 @@ function AddJournal({ setError, fetchJournals }) {
 
 	const addJournal = (event) => {
 		event.preventDefault();
-		axios.post('http://localhost:8000/journals', { title: title, content: content, timestamp: getCurrentTimestamp(), modified: getCurrentTimestamp() }) // actual attribute name: this file's var/val
+		axios.post(JOURNALS_ENDPOINT, { title: title, content: content, timestamp: getCurrentTimestamp(), modified: getCurrentTimestamp() }) // actual attribute name: this file's var/val
 			.then(() => {
 				setError('');
 				fetchJournals();
@@ -70,7 +74,7 @@ function Journals() {
 	const [journals, setJournals] = useState([]);
 
 	const fetchJournals = () => {
-		axios.get('http://localhost:8000/journals')
+		axios.get(JOURNALS_ENDPOINT)
 			.then((response) => {
 				const journalsObject = response.data.Data;
 				const keys = Object.keys(journalsObject);

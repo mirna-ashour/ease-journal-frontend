@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import { BACKEND_URL } from '../../constants';
+
+const CATEGORIES_ENDPOINT = `${BACKEND_URL}/categories`;
+
 function getCurrentTimestamp() {
     const currentDate = new Date();
 
@@ -27,7 +31,7 @@ function AddCategoryForm({ setError, fetchCategories }) {
 
 	const addCategory = (event) => {
 		event.preventDefault();
-		axios.post('http://localhost:8000/categories', { title: title, user: user, created: getCurrentTimestamp() }) // actual attribute name: this file's var/val
+		axios.post(CATEGORIES_ENDPOINT, { title: title, user: user, created: getCurrentTimestamp() }) // actual attribute name: this file's var/val
 			.then(() => {
 				setError('');
 				fetchCategories();
@@ -67,7 +71,7 @@ function Categories() {
 	const [categories, setCategories] = useState([]);
 
 	const fetchCategories = () => {
-		axios.get('http://localhost:8000/categories')
+		axios.get(CATEGORIES_ENDPOINT)
 			.then((response) => {
 				const categoriesObject = response.data.Data;
 				const keys = Object.keys(categoriesObject);

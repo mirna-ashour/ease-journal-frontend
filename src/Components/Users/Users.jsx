@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import { BACKEND_URL } from '../../constants';
+
+const USERS_ENDPOINT = `${BACKEND_URL}/users`;
+
 function AddUserForm({ setError, fetchUsers }) {
 	const [first_name, setFirstName] = useState('');
 	const [last_name, setLastName] = useState('');
@@ -14,7 +18,7 @@ function AddUserForm({ setError, fetchUsers }) {
 
 	const addUser = (event) => {
 		event.preventDefault();
-		axios.post('http://localhost:8000/users', { first_name: first_name, last_name: last_name, dob: dob, email: email }) // actual attribute name: this file's var/val
+		axios.post(USERS_ENDPOINT, { first_name: first_name, last_name: last_name, dob: dob, email: email }) // actual attribute name: this file's var/val
 			.then(() => {
 				setError('');
 				fetchUsers();
@@ -61,7 +65,7 @@ function Users() {
 	const [users, setUsers] = useState([]);
 
 	const fetchUsers = () => {
-		axios.get('http://localhost:8000/users')
+		axios.get(USERS_ENDPOINT)
 		.then((response) => {
 			const usersObject = response.data.Data;
 			const keys = Object.keys(usersObject);
