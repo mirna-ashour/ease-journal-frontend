@@ -135,6 +135,7 @@ nav a {
   --border-radius: 15px;
   border-radius: 5px 5px 0 0;
   position: relative;
+  transform: scale(1.05);
 }
 nav a:hover::before,
 nav a:focus::before {
@@ -175,6 +176,13 @@ nav a:focus {
   margin: 1rem 0;
   padding: 1.5rem;
   border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Typographic animation for headings */
+@keyframes typingAnimation {
+  0% { width: 0; }
+  100% { width: 100%; }
 }
 
 .category-container h2,
@@ -182,6 +190,17 @@ nav a:focus {
 .user-container h2 {
   margin-top: 0; /* Remove margin from the top of the heading */
   margin-bottom: 1rem; /* Add some space below headings */
+
+  overflow: hidden; /* Ensures the content is clipped */
+  white-space: nowrap; /* Keeps the content on a single line */
+  border-right: 3px solid var(--accent-color); /* The typwriter cursor */
+  animation: typingAnimation 5s steps(40, end), blink-caret .75s step-end infinite;
+}
+
+/* Blinking caret for typewriter effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: var(--accent-color); }
 }
 
 .category-container p,
