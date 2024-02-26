@@ -4,6 +4,13 @@
   box-sizing: border-box;
 }
 
+/* Subtle animated gradient background */
+@keyframes backgroundAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 html {
   --poppy: hsla(356, 74%, 52%, 1);
   --sky-blue: rgb(171, 213, 236);
@@ -15,6 +22,10 @@ html {
   --background-color: var(--off-white);
   --accent-color: var(--sky-blue);
   background-color: var(--background-color);
+
+  background: linear-gradient(270deg, var(--lemon-chiffon), var(--sky-blue), var(--buff));
+  background-size: 600% 600%;
+  animation: backgroundAnimation 30s ease infinite;
 }
 
 .wrapper {
@@ -27,6 +38,11 @@ html {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+}
+
+/* Smooth transitions for all hoverable elements */
+*, button, a {
+  transition: all 0.3s ease;
 }
 
 button {
@@ -43,6 +59,8 @@ button:focus,
 button:hover {
   background: var(--accent-color);
   color: var(--background-color);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .error-message {
