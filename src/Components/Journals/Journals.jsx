@@ -26,13 +26,14 @@ function getCurrentTimestamp() {
 function AddJournal({ setError, fetchJournals }) {
 	const [title, setTitle] = useState('');
 	const [content, setContent] =useState('');
+	const prompt = "None" 		// temporary prompt value until prompt generation is added
 
 	const changeTitle = (event) => { setTitle(event.target.value); };
 	const changeContent = (event) => {setContent(event.target.value); };
 
 	const addJournal = (event) => {
 		event.preventDefault();
-		axios.post(JOURNALS_ENDPOINT, { title: title, content: content, timestamp: getCurrentTimestamp(), modified: getCurrentTimestamp() }) // actual attribute name: this file's var/val
+		axios.post(JOURNALS_ENDPOINT, { title: title, content: content, prompt: prompt, timestamp: getCurrentTimestamp(), modified: getCurrentTimestamp() }) // actual attribute name: this file's var/val
 			.then(() => {
 				setError('');
 				fetchJournals();
