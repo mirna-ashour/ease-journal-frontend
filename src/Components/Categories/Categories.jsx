@@ -5,22 +5,6 @@ import { BACKEND_URL } from '../../constants';
 
 const CATEGORIES_ENDPOINT = `${BACKEND_URL}/categories`;
 
-function getCurrentTimestamp() {
-    const currentDate = new Date();
-
-    // Get date components
-    const year = currentDate.getFullYear();
-    const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed, so we add 1
-    const day = String(currentDate.getDate()).padStart(2, '0');
-    const hours = String(currentDate.getHours()).padStart(2, '0');
-    const minutes = String(currentDate.getMinutes()).padStart(2, '0');
-    const seconds = String(currentDate.getSeconds()).padStart(2, '0');
-
-    // Assemble formatted date string
-    const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-
-    return formattedDate;
-}
 
 function AddCategoryForm({ setError, fetchCategories }) {
 	const [title, setTitle] = useState('');
@@ -31,7 +15,7 @@ function AddCategoryForm({ setError, fetchCategories }) {
 
 	const addCategory = (event) => {
 		event.preventDefault();
-		axios.post(CATEGORIES_ENDPOINT, { title: title, user: user, created: getCurrentTimestamp() }) // actual attribute name: this file's var/val
+		axios.post(CATEGORIES_ENDPOINT, { title: title, user: user }) // actual attribute name: this file's var/val
 			.then(() => {
 				setError('');
 				fetchCategories();
