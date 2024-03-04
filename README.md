@@ -1,3 +1,4 @@
+
 <p align="center">
     <img src="src/EaseJournalLOGO_V1_vector.png" alt="logo">
 </p>
@@ -19,14 +20,17 @@ This project is built using React and integrates with a Flask backend to manage 
 ### Categories Page 
 - Displays all categories available for journaling.
 - Allows users to add a new category to categorize their journal entries.
+- Users can view detailed information about each category including title, user ID, and creation date.
 
 ### Users Page
 - Displays a list of all current users of the application.
 - Provides a feature to add a new user, facilitating user management and personalization of journal entries.
+- Users can view detailed information about each user including first name, last name, date of birth, and email.
 
 ### Journals Page
 - Displays all journal entries submitted by users.
-- Users can view their past entries and gain insights from their journaling habits.
+- Allows users to add a new journal entry with title and content.
+- Users can view detailed information about each journal entry including timestamp, title, prompt, content, and last modification date.
 
 ### Navigation Bar Includes
 - **Home:** Navigates to the home page.
