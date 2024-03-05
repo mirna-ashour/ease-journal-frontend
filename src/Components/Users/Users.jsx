@@ -10,15 +10,19 @@ function AddUserForm({ setError, fetchUsers }) {
 	const [last_name, setLastName] = useState('');
 	const [dob, setDob] = useState('');
 	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+
 
 	const changeFirstName = (event) => { setFirstName(event.target.value); };
 	const changeLastName  = (event) => {  setLastName(event.target.value); };
 	const changeDob  = (event) => {  setDob(event.target.value); };
 	const changeEmail  = (event) => {  setEmail(event.target.value); };
+	const changePassword  = (event) => {  setPassword(event.target.value); };
+
 
 	const addUser = (event) => {
 		event.preventDefault();
-		axios.post(USERS_ENDPOINT, { first_name: first_name, last_name: last_name, dob: dob, email: email }) // actual attribute name: this file's var/val
+		axios.post(USERS_ENDPOINT, { first_name: first_name, last_name: last_name, dob: dob, email: email, password: password }) // actual attribute name: this file's var/val
 			.then(() => {
 				setError('');
 				fetchUsers();
@@ -53,6 +57,11 @@ function AddUserForm({ setError, fetchUsers }) {
 				Email
 			</label>
 			<input type="text" id="email" value={email} onChange={changeEmail} />
+
+			<label htmlFor="password">
+				Password
+			</label>
+			<input type="text" id="password" value={password} onChange={changePassword} />
 
 			<button type="submit" onClick={addUser}>Add User</button>
 		</form>
@@ -107,6 +116,7 @@ function Users() {
 					 <p>Last Name: {user.last_name}</p>
 					 <p>DOB: {user.dob}</p>
 					 <p>Email: {user.email}</p>
+					 <p>Password: {user.password}</p>
 				</div>
 			))}
 		</div>
