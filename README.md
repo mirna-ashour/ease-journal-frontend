@@ -55,3 +55,12 @@ This React frontend interacts with the Ease Journal Flask API for backend operat
 
 ## Contributing
 Contributions to the project are welcome! Please refer to the project's issues and pull requests for areas of improvement or feature additions.
+
+## Recent Updates
+
+- **Google OAuth Integration:** Implemented Google OAuth for user authentication, allowing users to sign in with their Google account for a seamless experience.
+- **API Connectivity:** Enhanced connectivity with the Flask backend API for fetching and posting journal entries, categories, and user data.
+- **Performance Improvements:** Various optimizations for faster loading times and improved user experience.
+- **Security Enhancements:** Increased security measures to protect user data and prevent unauthorized access.
+
+For more information and updates, stay tuned to our GitHub repository.
