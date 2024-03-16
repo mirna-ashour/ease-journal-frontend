@@ -213,7 +213,7 @@ nav a:focus {
 .login-container {
   display: flex;
   justify-content: center;
-  align-items: start;
+  align-items: flex-start;
   height: 100vh; /* Center the login form vertically */
 }
 

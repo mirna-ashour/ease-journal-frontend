@@ -96,6 +96,7 @@ function Categories() {
 					 <p>Title: {category.title}</p>
 					 <p>User_id: {category.user}</p>
 					 <p>Created: {category.created}</p>
+					 <p>Journals: {category.journals}</p>
 				</div>
 			))}
 		</div>
