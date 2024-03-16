@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { googleLogout, useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
+import { Link } from 'react-router-dom'; 
 // import './Login.css'; // Import CSS file for Login component styles
 
 function Login() {
@@ -68,6 +69,9 @@ function Login() {
                         <button type="submit">Login</button>
                         <br></br><br></br>
                         <button onClick={login}>Sign in with Google</button>
+                        <p>
+                            <Link to="/register">Create an account</Link>
+                        </p>
                     </form>
                 )}
             </div>
