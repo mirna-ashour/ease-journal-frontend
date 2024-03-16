@@ -209,3 +209,37 @@ nav a:focus {
   margin: 0;
   font-size: 1.2rem; /* Reduce font size slightly for better readability */
 }
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  height: 100vh; /* Center the login form vertically */
+}
+
+.login-form {
+  text-align: center;
+}
+
+.login-form form {
+  width: 300px;
+}
+
+.login-form input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.login-form button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
