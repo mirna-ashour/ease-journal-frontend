@@ -12,7 +12,7 @@ function AddJournal({ setError, fetchJournals }) {
 	const prompt = "None" 		// temporary prompt value until prompt generation is added
 
 	const changeTitle = (event) => { setTitle(event.target.value); };
-	const changeContent = (event) => {setContent(event.target.value); };
+	const changeContent = (event) => { setContent(event.target.value); };
 
 	const addJournal = (event) => {
 		event.preventDefault();
@@ -95,7 +95,8 @@ function Journals() {
 
 			{journals.map((journal) => (
 				<div className="category-container">
-					 <h2>Time Stamp: {journal.timestamp}</h2>
+					 <h2>Journal_id: {journal.journal_id}</h2>
+					 <p>Timestamp: {journal.timestamp}</p>
 					 <p>Title: {journal.title}</p>
 					 <p>Prompt: {journal.prompt}</p>
 					 <p>Content: {journal.content}</p>
