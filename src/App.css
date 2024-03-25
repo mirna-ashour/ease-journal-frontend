@@ -10,21 +10,133 @@
   100% { background-position: 0% 50%; }
 }
 
+/* Enhancing the overall background and theme */
 html {
-  --poppy: hsla(356, 74%, 52%, 1);
-  --sky-blue: rgb(171, 213, 236);
-  --lemon-chiffon: hsla(58, 74%, 85%, 1);
-  --buff: hsla(27, 64%, 65%, 1);
-  --bistre: hsla(10, 31%, 19%, 1);
-  --off-white: hsla(45, 29%, 97%, 1);
+  --dark-blue: hsla(214, 47%, 23%, 1);
+  --light-blue: rgb(103, 183, 220);
+  --crisp-blue: hsla(202, 100%, 50%, 1);
+  --cool-gray: hsla(217, 19%, 35%, 1);
+  --light-gray: hsla(0, 0%, 96%, 1);
+  --off-white: hsla(0, 0%, 100%, 1);
 
-  --background-color: var(--off-white);
-  --accent-color: var(--sky-blue);
+  --background-color: var(--light-gray);
+  --primary-color: var(--crisp-blue);
+  --text-color: var(--cool-gray);
+  --button-color: var(--dark-blue);
   background-color: var(--background-color);
 
-  background: linear-gradient(270deg, var(--lemon-chiffon), var(--sky-blue), var(--buff));
-  background-size: 600% 600%;
-  animation: backgroundAnimation 30s ease infinite;
+  background: linear-gradient(135deg, var(--light-blue) 0%, var(--crisp-blue) 100%);
+  background-size: cover;
+  animation: backgroundAnimation 60s ease infinite;
+}
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(-45deg, var(--sky-blue), var(--lemon-chiffon), var(--poppy), var(--buff));
+  background-size: 400% 400%;
+  animation: backgroundAnimation 15s ease infinite;
+  padding: 2rem; /* Add padding to ensure some space around the login card */
+}
+
+/* Styling for the login container to center and visually separate it from the background */
+.login-container {
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.9); /* Slightly see-through */
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 400px;
+  max-height: 90%; /* Prevents the card from being too tall */
+  overflow-y: auto; /* Allows scrolling if content is too long */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-form h2 {
+  color: var(--bistre);
+  text-align: center; /* Centers the heading */
+  margin-bottom: 1.5rem;
+}
+
+.login-form input {
+  width: calc(100% - 20px); /* Accounts for padding */
+  padding: 15px;
+  margin-bottom: 1rem;
+  border: 1px solid var(--bistre);
+  border-radius: 5px;
+  font-size: 1rem; /* Larger font size for readability */
+  background: var(--off-white);
+}
+
+.login-form button {
+  padding: 15px;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.login-form button.login-button {
+  background: var(--bistre);
+  color: var(--off-white);
+}
+
+.login-form button.google-signin-button {
+  background: #db4437; /* Google red */
+  color: white;
+}
+
+.login-form button:hover {
+  opacity: 0.9; /* Slight effect for hover state */
+}
+
+/* Add a subtle animation on input focus */
+.login-form input:focus {
+  border-color: var(--sky-blue);
+  box-shadow: 0 0 0 2px var(--sky-blue);
+}
+
+.register-link {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.register-link a {
+  color: var(--bistre);
+  text-decoration: underline; /* Makes it clear it's a clickable link */
+  transition: color 0.3s ease;
+}
+
+.register-link a:hover {
+  color: var(--poppy);
+}
+
+/* Additional styles for enhancing text and spacing */
+h1, p {
+  text-align: center;
+  color: var(--text-color);
+}
+
+h1 {
+  margin-top: 0;
+  color: var(--dark-blue);
 }
 
 /* New gradient border for buttons and inputs */
@@ -229,38 +341,4 @@ nav a:focus {
 .user-container p {
   margin: 0;
   font-size: 1.2rem; /* Reduce font size slightly for better readability */
-}
-
-.login-container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  height: 100vh; /* Center the login form vertically */
-}
-
-.login-form {
-  text-align: center;
-}
-
-.login-form form {
-  width: 300px;
-}
-
-.login-form input {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.login-form button {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: #007bff;
-  color: #fff;
-  cursor: pointer;
 }
