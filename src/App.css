@@ -4,7 +4,6 @@
   box-sizing: border-box;
 }
 
-/* Subtle animated gradient background */
 @keyframes backgroundAnimation {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -26,6 +25,28 @@ html {
   background: linear-gradient(270deg, var(--lemon-chiffon), var(--sky-blue), var(--buff));
   background-size: 600% 600%;
   animation: backgroundAnimation 30s ease infinite;
+}
+
+/* New gradient border for buttons and inputs */
+.gradient-border {
+  border: none;
+  position: relative;
+}
+.gradient-border::after {
+  content: '';
+  position: absolute;
+  top: -2px; right: -2px; bottom: -2px; left: -2px;
+  z-index: -1;
+  background: linear-gradient(60deg, var(--poppy), var(--sky-blue), var(--lemon-chiffon), var(--buff));
+  background-size: 300% 300%;
+  border-radius: 8px;
+  animation: moveGradient 4s alternate infinite;
+}
+
+@keyframes moveGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .wrapper {
