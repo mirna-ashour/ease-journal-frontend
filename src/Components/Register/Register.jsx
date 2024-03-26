@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { BACKEND_URL } from '../../constants';
+
+const USERS_ENDPOINT = `${BACKEND_URL}/users`;
 
 function Register() {
+    const [error, setError] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [dob, setDOB] = useState('');
@@ -9,7 +14,22 @@ function Register() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Add your registration logic here
+        axios.post(USERS_ENDPOINT, { first_name:firstName, last_name:lastName, 
+            dob:dob, email:email, password:password }) // actual attribute name: this file's var/val
+        .then(() => {
+            setError('');
+        })
+        .catch((e) => {
+            if (e.response && e.response.data && e.response.data.message) {
+                setError(e.response.data.message);
+            } else {
+                if (e.response && e.response.data && e.response.data.message) {
+                    setError(e.response.data.message);
+                } else {
+                    setError('There was a problem registering. Please try again.');
+                }
+            }
+        });
         console.log('Form submitted:', { firstName, lastName, dob, email, password });
         // Clear form fields after submission
         setFirstName('');
@@ -21,6 +41,11 @@ function Register() {
 
     return (
         <div className="login-container">
+            {error && (
+				<div className="error-message">
+					{error}
+				</div>
+			)}
             <div className="login-form">
                 <form onSubmit={handleSubmit}>
                     <div>
