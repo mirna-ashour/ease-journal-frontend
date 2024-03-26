@@ -101,6 +101,8 @@ function Journals() {
 					 <p>Prompt: {journal.prompt}</p>
 					 <p>Content: {journal.content}</p>
 					 <p>Modified: {journal.modified}</p>
+					 <p>Category: {journal.category}</p>
+
 				</div>
 			))}
 		</div>
