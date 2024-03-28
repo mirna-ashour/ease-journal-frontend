@@ -4,6 +4,43 @@
   box-sizing: border-box;
 }
 
+html {
+  --dark-blue: hsla(214, 47%, 23%, 1);
+  --light-blue: rgb(103, 183, 220);
+  --crisp-blue: hsla(202, 100%, 50%, 1);
+  --cool-gray: hsla(217, 19%, 35%, 1);
+  --light-gray: hsla(0, 0%, 96%, 1);
+  --off-white: hsla(0, 0%, 100%, 1);
+  --bistre: #3d2b1f; /* added for consistency */
+  --poppy: #e35335; /* vibrant color for emphasis */
+  --sky-blue: #7ec8e3;
+  --lemon-chiffon: #fffacd;
+  --buff: #f0dc82;
+
+  --background-color: var(--light-gray);
+  --primary-color: var(--crisp-blue);
+  --text-color: var(--cool-gray);
+  --button-color: var(--dark-blue);
+  --accent-color: var(--crisp-blue); /* For consistency in styling elements */
+
+  background-color: var(--background-color);
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.app-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo-container img {
+  max-width: 200px;
+  margin: 2rem 0;
+}
+
 @keyframes backgroundAnimation {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -30,8 +67,9 @@ html {
   animation: backgroundAnimation 60s ease infinite;
 }
 
+/* Use a modern sans-serif font that is web-safe and easy to read */
 body {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .login-page {
@@ -47,7 +85,7 @@ body {
 
 /* Styling for the login container to center and visually separate it from the background */
 .login-container {
-  padding: 2rem;
+  padding: 1rem;
   background: rgba(255, 255, 255, 0.9); /* Slightly see-through */
   border-radius: 10px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
@@ -69,28 +107,38 @@ body {
 .login-form h2 {
   color: var(--bistre);
   text-align: center; /* Centers the heading */
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
-.login-form input {
-  width: calc(100% - 20px); /* Accounts for padding */
-  padding: 15px;
-  margin-bottom: 1rem;
-  border: 1px solid var(--bistre);
-  border-radius: 5px;
-  font-size: 1rem; /* Larger font size for readability */
-  background: var(--off-white);
+/* Improve form element styling for a more modern look */
+.login-form input, .login-form button, form input, form button {
+  border: 1px solid var(--cool-gray);
+  border-radius: 8px;
+  padding: 0.8rem;
+  margin: 0.5rem 0;
 }
 
-.login-form button {
-  padding: 15px;
-  margin-bottom: 1rem;
-  border: none;
-  border-radius: 5px;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.3s ease;
+/* Updated button styles for better user interaction */
+.login-form button:hover, form button:hover {
+  opacity: 0.85;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Enhanced navigation bar */
+nav ul {
+  justify-content: center; /* Center navigation items */
+}
+
+/* Improved responsiveness */
+@media (max-width: 768px) {
+  .login-container, .category-container, .journal-container, .user-container {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  nav ul {
+    flex-direction: column;
+  }
 }
 
 .login-form button.login-button {
@@ -161,9 +209,11 @@ h1 {
   100% { background-position: 0% 50%; }
 }
 
-.wrapper {
-  max-width: min(800px, 100% - 4rem);
-  margin-inline: auto;
+/* Ensure that the primary elements have a maximum width for better readability on large screens */
+.wrapper, .login-container, .category-container, .journal-container, .user-container {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .wrapper header {

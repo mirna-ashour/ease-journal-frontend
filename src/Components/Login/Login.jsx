@@ -2,16 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { googleLogout, useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-// Ensure to import the updated CSS file for Login component styles
 
 function Login() {
-    const [user, setUser] = useState([]);
-    const [profile, setProfile] = useState([]);
+    const [user, setUser] = useState(null);
+    const [profile, setProfile] = useState(null);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [isLoading, setIsLoading] = useState(false); // New state to manage loading state
 
     const login = useGoogleLogin({
-        onSuccess: (codeResponse) => setUser(codeResponse),
+        onSuccess: (codeResponse) => {
+            setUser(codeResponse);
+            setIsLoading(true); // Start loading on login attempt
+        },
         onError: (error) => console.log('Login Failed:', error)
     });
 
@@ -26,8 +29,12 @@ function Login() {
                 })
                 .then((res) => {
                     setProfile(res.data);
+                    setIsLoading(false); // Stop loading on successful login
                 })
-                .catch((err) => console.log(err));
+                .catch((err) => {
+                    console.log(err);
+                    setIsLoading(false); // Stop loading on error
+                });
         }
     }, [user]);
 
@@ -41,12 +48,16 @@ function Login() {
 
     const handleLogin = (e) => {
         e.preventDefault();
+        // Implement your login logic here
     };
 
     return (
         <div className="login-page">
             <div className="login-container">
-                {profile ? (
+                {/* Conditional rendering based on isLoading */}
+                {isLoading ? (
+                    <div>Loading...</div>
+                ) : profile ? (
                     <div className="profile-info">
                         <h3>User Logged in:</h3>
                         <p>Name: {profile.name}</p>

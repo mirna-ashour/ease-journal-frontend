@@ -7,22 +7,24 @@ import Users from './Components/Users';
 import Journals from './Components/Journals';
 import Login from './Components/Login';
 import Register from './Components/Register';
-import Logo from './EaseJournalLOGO_V1_vector.png'; // Import the logo
+import Logo from './EaseJournalLOGO_V1_vector.png';
 
 function App() {
   return (
     <BrowserRouter>
-      <Navbar/>
-      <div className="logo-container" style={{ textAlign: 'center', margin: '2rem 0' }}>
-        <img src={Logo} alt="Ease Journal Logo" style={{ maxWidth: '200px' }} />
+      <div className="app-container">
+        <Navbar/>
+        <div className="logo-container">
+          <img src={Logo} alt="Ease Journal Logo" />
+        </div>
+        <Routes>
+          <Route path="/" element={<Login/>} />
+          <Route path="categories" element={<Categories/>} />
+          <Route path="users" element={<Users/>} />
+          <Route path="journals" element={<Journals/>} />
+          <Route path="register" element={<Register/>} />
+        </Routes>
       </div>
-      <Routes>
-        <Route path="" element={ <Login/> } />
-        <Route path="categories" element={ <Categories/> } />
-        <Route path="users" element={ <Users/> } />
-        <Route path="journals" element={ <Journals/> } />
-        <Route path="register" element={ <Register/> } />
-      </Routes>
     </BrowserRouter>
   );
 }
