@@ -10,8 +10,10 @@ const PAGES = [
 
 function Navbar() {
 
+  const location = useLocation();
+
   const mapper = (page) => (
-    <li key={page.destination}>
+    <li key={page.destination} className={location.pathname === page.destination ? 'active' : ''}>
       <Link to={page.destination}>
         {page.label}
       </Link>

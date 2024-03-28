@@ -67,6 +67,7 @@ html {
   animation: backgroundAnimation 60s ease infinite;
 }
 
+
 /* Use a modern sans-serif font that is web-safe and easy to read */
 body {
   font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -96,6 +97,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border: 1px solid #dee2e6; /* Bootstrap-like border color */
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
 .login-form {
@@ -296,9 +299,17 @@ form button[type=button]:hover {
 }
 
 nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   margin: 0;
   padding-top: 0.5rem;
   background-color: var(--accent-color);
+}
+
+nav ul li.active a {
+  background: var(--button-color);
+  color: var(--off-white);
 }
 
 nav ul {
