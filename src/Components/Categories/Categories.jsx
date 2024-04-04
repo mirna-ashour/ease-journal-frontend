@@ -93,7 +93,7 @@ function Categories() {
 			{categories.map((category) => (
 				<div key={category.category_id} className="category-container">
 					 <h2>Category_id: {category.category_id}</h2>
-					 <p>Title: {category.title}</p>
+					 <p>Category_name: {category.category_name}</p>
 					 <p>User_id: {category.user}</p>
 					 <p>Created: {category.created}</p>
 					 <p>Journals: {category.journals}</p>
