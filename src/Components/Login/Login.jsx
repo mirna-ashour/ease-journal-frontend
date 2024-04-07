@@ -7,16 +7,13 @@ const USERS_ENDPOINT = `${BACKEND_URL}users`;
 
 function Login() {
     const [error, setError] = useState('');
-    const [profile, setProfile] = useState(null);
+    const [profile, setProfile] = useState({});
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loginStatus, setLoginStatus] = useState(false);
 
-    useEffect(() => {
-    }, []);
-
     const logOut = () => {
-        setProfile(null);
+        setProfile({});
         setLoginStatus(false);
     };
 
@@ -25,17 +22,15 @@ function Login() {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        // console.log(`${USERS_ENDPOINT}/${email}`)
         axios.get(`${USERS_ENDPOINT}/${email}`)
         .then(response => {
             setProfile(response.data);
-            // if(password === profile.password) {
-            //     setLoginStatus(true);
-            // }
-            // else{
-            //     setError('Incorrect password.');
-            // }
-            setLoginStatus(true);
+            if(password === response.data.password) {
+                setLoginStatus(true);
+            }
+            else{
+                setError('Incorrect password. Please try again.');
+            }
         })
         .catch(e => {
             if (e.response && e.response.data && e.response.data.message) {
