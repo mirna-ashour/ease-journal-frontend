@@ -23,12 +23,8 @@ function Register() {
             if (e.response && e.response.data && e.response.data.message) {
                 setError(e.response.data.message);
             } else {
-                if (e.response && e.response.data && e.response.data.message) {
-                    setError(e.response.data.message);
-                } else {
                     setError('There was a problem registering. Please try again.');
                 }
-            }
         });
         console.log('Form submitted:', { firstName, lastName, dob, email, password });
         // Clear form fields after submission

@@ -1,46 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { googleLogout, useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
+import { BACKEND_URL } from '../../constants';
 import { Link } from 'react-router-dom';
 
+const USERS_ENDPOINT = `${BACKEND_URL}users`;
+
 function Login() {
-    const [user, setUser] = useState(null);
+    const [error, setError] = useState('');
     const [profile, setProfile] = useState(null);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [isLoading, setIsLoading] = useState(false); // New state to manage loading state
-
-    const login = useGoogleLogin({
-        onSuccess: (codeResponse) => {
-            setUser(codeResponse);
-            setIsLoading(true); // Start loading on login attempt
-        },
-        onError: (error) => console.log('Login Failed:', error)
-    });
+    const [loginStatus, setLoginStatus] = useState(false);
 
     useEffect(() => {
-        if (user) {
-            axios
-                .get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
-                    headers: {
-                        Authorization: `Bearer ${user.access_token}`,
-                        Accept: 'application/json'
-                    }
-                })
-                .then((res) => {
-                    setProfile(res.data);
-                    setIsLoading(false); // Stop loading on successful login
-                })
-                .catch((err) => {
-                    console.log(err);
-                    setIsLoading(false); // Stop loading on error
-                });
-        }
-    }, [user]);
+    }, []);
 
     const logOut = () => {
-        googleLogout();
         setProfile(null);
+        setLoginStatus(false);
     };
 
     const handleEmailChange = (e) => setEmail(e.target.value);
@@ -48,19 +25,39 @@ function Login() {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        // Implement your login logic here
+        // console.log(`${USERS_ENDPOINT}/${email}`)
+        axios.get(`${USERS_ENDPOINT}/${email}`)
+        .then(response => {
+            setProfile(response.data);
+            // if(password === profile.password) {
+            //     setLoginStatus(true);
+            // }
+            // else{
+            //     setError('Incorrect password.');
+            // }
+            setLoginStatus(true);
+        })
+        .catch(e => {
+            if (e.response && e.response.data && e.response.data.message) {
+                setError(e.response.data.message);
+            } else {
+                    setError('There was a problem with logging in. Please try again.');
+                }
+        });
     };
 
     return (
         <div className="login-page">
             <div className="login-container">
-                {/* Conditional rendering based on isLoading */}
-                {isLoading ? (
-                    <div>Loading...</div>
-                ) : profile ? (
+                {error && (
+                    <div className="error-message">
+                        {error}
+                    </div>
+                )}
+                {loginStatus ? (
                     <div className="profile-info">
                         <h3>User Logged in:</h3>
-                        <p>Name: {profile.name}</p>
+                        <p>Name: {profile.first_name}</p>
                         <p>Email Address: {profile.email}</p>
                         <button className="logout-button" onClick={logOut}>Log out</button>
                     </div>
@@ -70,7 +67,7 @@ function Login() {
                         <input type="email" placeholder="Email" value={email} onChange={handleEmailChange} />
                         <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
                         <button type="submit" className="login-button">Login</button>
-                        <button type="button" className="google-signin-button" onClick={login}>Sign in with Google</button>
+                        {/* <button type="button" className="google-signin-button" onClick={login}>Sign in with Google</button> */}
                         <p className="register-link">
                             <Link to="/register">Create an account</Link>
                         </p>
