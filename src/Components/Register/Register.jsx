@@ -1,104 +1,114 @@
 import React, { useState } from 'react';
+import propTypes from 'prop-types';
 import axios from 'axios';
 import { BACKEND_URL } from '../../constants';
 
 const USERS_ENDPOINT = `${BACKEND_URL}/users`;
 
-function Register() {
-    const [error, setError] = useState('');
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [dob, setDOB] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+const FORM = [
+  {
+    FLD_NM: 'first_name',
+    type: 'text',
+  },
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        axios.post(USERS_ENDPOINT, { first_name:firstName, last_name:lastName, 
-            dob:dob, email:email, password:password }) // actual attribute name: this file's var/val
-        .then(() => {
-            setError('');
-        })
-        .catch((e) => {
-            if (e.response && e.response.data && e.response.data.message) {
-                setError(e.response.data.message);
-            } else {
-                    setError('There was a problem registering. Please try again.');
-                }
-        });
-        console.log('Form submitted:', { firstName, lastName, dob, email, password });
-        // Clear form fields after submission
-        setFirstName('');
-        setLastName('');
-        setDOB('');
-        setEmail('');
-        setPassword('');
+  {
+    FLD_NM: 'last_name',
+    type: 'text',
+  },
+
+  {
+    FLD_NM: 'date_of_birth', 
+    type: 'date',
+  },
+
+  {
+    FLD_NM: 'email',
+    type: 'text',
+  },
+
+  {
+    FLD_NM: 'password',
+    type: 'password',
+  },
+];
+
+/* This function just takes an array 'fields' (of the format described above) and
+ * creates an object where the keys are the fieldName values for each item in 'fields'
+ * and the values are the values given by the user. If you don't set an initial value
+ * (here it's an empty string ''), when the user enters a value you'll switch from
+ * an uncontrolled input (user can do whatever) to a controlled input (value is fixed).
+ * Usually, if you're writing a frontend in React, you want all inputs to be
+ * controlled.
+ */
+function fieldsToAnswers(fields) {
+    const answers = {};
+    fields.forEach(({ fieldName }) => { answers[fieldName] = ''; });
+    return answers;
+  }
+  
+  function Form({ fields, handleSubmit }) {
+    /* This line creates two things: an object (answers) which stores the user's input
+     * and a function (setAnswers) which can update that object. If you simply had the
+     * code
+     *   function Form() {
+     *    ...
+     *    const answers = fieldsToAnswers(fields);
+     *    ...
+     *   }
+     * you would run into trouble because it would be reset every render and so user
+     * input would not work.
+     * 
+     * If you had the code
+     *   const answers = fieldsToAnswers(fields);
+     *   function Form() {
+     *    ...
+     *   }
+     * you would run into trouble because user input would not cause the form to re-
+     * render, meaning that a) they would not see that the input was working and
+     * b) only one letter of their input would be stored.
+     */
+    const [answers, setAnswers] = useState(fieldsToAnswers(fields));
+    /* This function stores the user's input in the array with a key corresponding to
+     * the field which they were editing, and - crucially - calls setAnswers with a
+     * shallow copy of answers. If you did not call setAnswers or called
+     *   setAnswers(answers);
+     * the component would not re-render and the user would not see that their input
+     * was working. Also it wouldn't quite work anyway - as mentioned above it would
+     * only store one character.
+     */
+    const answerQuestion = (fieldName, value) => {
+      answers[fieldName] = value;
+      setAnswers({ ...answers });
     };
-
+  
     return (
-        <div className="login-container">
-            {error && (
-				<div className="error-message">
-					{error}
-				</div>
-			)}
-            <div className="login-form">
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <label htmlFor="firstName">First Name:</label>
-                        <input
-                            type="text"
-                            id="firstName"
-                            value={firstName}
-                            onChange={(e) => setFirstName(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="lastName">Last Name:</label>
-                        <input
-                            type="text"
-                            id="lastName"
-                            value={lastName}
-                            onChange={(e) => setLastName(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="dob">Date of Birth:</label>
-                        <input
-                            type="date"
-                            id="dob"
-                            value={dob}
-                            onChange={(e) => setDOB(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="email">Email:</label>
-                        <input
-                            type="email"
-                            id="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="password">Password:</label>
-                        <input
-                            type="password"
-                            id="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <button type="submit">Register</button>
-                </form>
-            </div>
-        </div>
+      <form>
+        {/* Maps objects in the fields array to <input> elements. */}
+        {fields.map(({ fieldName, type }) => (
+          <input
+            key={fieldName}
+            type={type}
+            onChange={(e) => { answerQuestion(fieldName, e.target.value); }}
+          />
+        ))}
+        {/* Adds a button which calls the handleSubmit function when the user
+          * clicks it or presses enter. If the button type is "button" instead
+          * of "submit", they'd have to manually click the button - enter wouldn't
+          * word. Not the end of the world, but a little more annoying.
+          */}
+        <button type="submit" onClick={() => { handleSubmit(answers); }} />
+      </form>
     );
-}
-
-export default Register;
+  }
+  
+  Form.propTypes = {
+    fields: propTypes.arrayOf(propTypes.shape({
+      fieldName: propTypes.string,
+      type: propTypes.string,
+    })).isRequired,
+    handleSubmit: propTypes.func.isRequired,
+  };
+  
+  export default function FormWrapper() {
+    return <Form fields={FORM} />;
+  }
