@@ -33,7 +33,7 @@ const FORM = [
 ];
 
 /* This function just takes an array 'fields' (of the format described above) and
- * creates an object where the keys are the fieldName values for each item in 'fields'
+ * creates an object where the keys are the FLD_NM values for each item in 'fields'
  * and the values are the values given by the user. If you don't set an initial value
  * (here it's an empty string ''), when the user enters a value you'll switch from
  * an uncontrolled input (user can do whatever) to a controlled input (value is fixed).
@@ -42,7 +42,7 @@ const FORM = [
  */
 function fieldsToAnswers(fields) {
     const answers = {};
-    fields.forEach(({ fieldName }) => { answers[fieldName] = ''; });
+    fields.forEach(({ FLD_NM }) => { answers[FLD_NM] = ''; });
     return answers;
   }
   
@@ -76,19 +76,19 @@ function fieldsToAnswers(fields) {
      * was working. Also it wouldn't quite work anyway - as mentioned above it would
      * only store one character.
      */
-    const answerQuestion = (fieldName, value) => {
-      answers[fieldName] = value;
+    const answerQuestion = (FLD_NM, value) => {
+      answers[FLD_NM] = value;
       setAnswers({ ...answers });
     };
   
     return (
       <form>
         {/* Maps objects in the fields array to <input> elements. */}
-        {fields.map(({ fieldName, type }) => (
+        {fields.map(({ FLD_NM, type }) => (
           <input
-            key={fieldName}
+            key={FLD_NM}
             type={type}
-            onChange={(e) => { answerQuestion(fieldName, e.target.value); }}
+            onChange={(e) => { answerQuestion(FLD_NM, e.target.value); }}
           />
         ))}
         {/* Adds a button which calls the handleSubmit function when the user
@@ -103,7 +103,7 @@ function fieldsToAnswers(fields) {
   
   Form.propTypes = {
     fields: propTypes.arrayOf(propTypes.shape({
-      fieldName: propTypes.string,
+      FLD_NM: propTypes.string,
       type: propTypes.string,
     })).isRequired,
     handleSubmit: propTypes.func.isRequired,
