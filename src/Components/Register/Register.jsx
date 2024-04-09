@@ -68,35 +68,41 @@ function fieldsToAnswers(fields) {
      * b) only one letter of their input would be stored.
      */
     const [answers, setAnswers] = useState(fieldsToAnswers(fields));
+
     /* This function stores the user's input in the array with a key corresponding to
-     * the field which they were editing, and - crucially - calls setAnswers with a
-     * shallow copy of answers. If you did not call setAnswers or called
-     *   setAnswers(answers);
-     * the component would not re-render and the user would not see that their input
-     * was working. Also it wouldn't quite work anyway - as mentioned above it would
-     * only store one character.
-     */
+    * the field which they were editing, and - crucially - calls setAnswers with a
+    * shallow copy of answers. If you did not call setAnswers or called
+    *   setAnswers(answers);
+    * the component would not re-render and the user would not see that their input
+    * was working. Also it wouldn't quite work anyway - as mentioned above it would
+    * only store one character.
+    */
+
     const answerQuestion = (FLD_NM, value) => {
-      answers[FLD_NM] = value;
-      setAnswers({ ...answers });
+      setAnswers({ ...answers, [FLD_NM]: value });
     };
   
     return (
       <form>
         {/* Maps objects in the fields array to <input> elements. */}
         {fields.map(({ FLD_NM, type }) => (
-          <input
-            key={FLD_NM}
-            type={type}
-            onChange={(e) => { answerQuestion(FLD_NM, e.target.value); }}
-          />
+          <div key={FLD_NM}>
+            <label htmlFor={FLD_NM}>{FLD_NM}</label>
+            <input
+              id={FLD_NM}
+              type={type}
+              value={answers[FLD_NM]}
+              onChange={(e) => { answerQuestion(FLD_NM, e.target.value); }}
+            />
+          </div>
         ))}
-        {/* Adds a button which calls the handleSubmit function when the user
-          * clicks it or presses enter. If the button type is "button" instead
-          * of "submit", they'd have to manually click the button - enter wouldn't
-          * word. Not the end of the world, but a little more annoying.
-          */}
-        <button type="submit" onClick={() => { handleSubmit(answers); }} />
+        
+         {/* Adds a button which calls the handleSubmit function when the user
+        * clicks it or presses enter. If the button type is "button" instead
+        * of "submit", they'd have to manually click the button - enter wouldn't
+        * word. Not the end of the world, but a little more annoying.
+        */}
+        <button type="submit" onClick={() => { handleSubmit(answers); }}>Sign Up</button>
       </form>
     );
   }
