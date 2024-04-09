@@ -7,15 +7,15 @@ const CATEGORIES_ENDPOINT = `${BACKEND_URL}/categories`;
 
 
 function AddCategoryForm({ setError, fetchCategories }) {
-	const [title, setTitle] = useState('');
+	const [category_name, setName] = useState('');
 	const [user, setUser] = useState('');
 
-	const changeTitle = (event) => { setTitle(event.target.value); };
+	const changeName = (event) => { setName(event.target.value); };
 	const changeUser  = (event) => {  setUser(event.target.value); };
 
 	const addCategory = (event) => {
 		event.preventDefault();
-		axios.post(CATEGORIES_ENDPOINT, { title: title, user: user }) // actual attribute name: this file's var/val
+		axios.post(CATEGORIES_ENDPOINT, { category_name: category_name, user: user }) // actual attribute name: this file's var/val
 			.then(() => {
 				setError('');
 				fetchCategories();
@@ -35,10 +35,10 @@ function AddCategoryForm({ setError, fetchCategories }) {
 
 	return (
 		<form>
-			<label htmlFor="title">
-				Category Title
+			<label htmlFor="category_name">
+				Category Name
 			</label>
-			<input type="text" id="title" value={title} onChange={changeTitle} />
+			<input type="text" id="category_name" value={category_name} onChange={changeName} />
 
 			<label htmlFor="user">
 				User ID
