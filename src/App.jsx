@@ -47,7 +47,7 @@ function App() {
       setProfile(null);
       navigate("/login");
     }
-  }, []);
+  }, [navigate]);
 
   return (
     <div className="app-container">

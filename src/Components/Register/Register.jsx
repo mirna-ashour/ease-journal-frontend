@@ -4,7 +4,7 @@ import axios from 'axios';
 import { BACKEND_URL } from '../../constants';
 
 const USERS_ENDPOINT = `${BACKEND_URL}/users`;
-//const SIGNUP_FORM_ENDPOINT = `${BACKEND_URL}/signup/form`;
+// const SIGNUP_FORM_ENDPOINT = `${BACKEND_URL}/signup/form`;
 
 const FORM = [
   {
@@ -32,6 +32,8 @@ const FORM = [
     type: 'password',
   },
 ];
+
+// const FORM = axios.get(SIGNUP_FORM_ENDPOINT);
 
 /* This function just takes an array 'fields' (of the format described above) and
  * creates an object where the keys are the fieldName values for each item in 'fields'
