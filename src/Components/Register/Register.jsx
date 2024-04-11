@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
 import axios from 'axios';
 import { BACKEND_URL } from '../../constants';
 
 const USERS_ENDPOINT = `${BACKEND_URL}/users`;
-// const SIGNUP_FORM_ENDPOINT = `${BACKEND_URL}/signup/form`;
+const SIGNUP_FORM_ENDPOINT = `${BACKEND_URL}/signup/form`;
 
 const FORM = [
   {
@@ -33,8 +33,6 @@ const FORM = [
   },
 ];
 
-// const FORM = axios.get(SIGNUP_FORM_ENDPOINT);
-
 /* This function just takes an array 'fields' (of the format described above) and
  * creates an object where the keys are the fieldName values for each item in 'fields'
  * and the values are the values given by the user. If you don't set an initial value
@@ -45,19 +43,32 @@ const FORM = [
  */
 function fieldsToAnswers(fields) {
     const answers = {};
-    fields.forEach(({ fieldName }) => { answers[fieldName] = ''; });
+    fields.forEach(({ FLD_NM }) => { answers[FLD_NM] = ''; });
     return answers;
   }
   
-  function Form({ fields }) {
+function Form({ fields }) {
   const [answers, setAnswers] = useState(fieldsToAnswers(fields));
 
+  useEffect(() => {
+    async function fetchForm() {
+      try {
+        const response = await axios.get(SIGNUP_FORM_ENDPOINT);
+        const formFields = response.data;
+        setAnswers(fieldsToAnswers(formFields));
+      } catch (error) {
+        console.error('Error fetching form:', error);
+      }
+    }
+    fetchForm();
+  }, []);
+
   const answerQuestion = (fieldName, value) => {
-    answers[fieldName] = value;
-    setAnswers({ ...answers });
+    setAnswers({ ...answers, [fieldName]: value });
   };
 
   const handleSubmit = async (e) => {
+    // e.preventDefault();
     try {
       await axios.post(USERS_ENDPOINT, answers);
       alert('Registered successfully!');
@@ -74,6 +85,7 @@ function fieldsToAnswers(fields) {
           <input
             id={FLD_NM}
             type={type}
+            value={answers[FLD_NM]}
             onChange={(e) => { answerQuestion(FLD_NM, e.target.value); }}
           />
         </div>
