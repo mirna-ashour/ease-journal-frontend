@@ -6,16 +6,27 @@ import { BACKEND_URL } from '../../constants';
 const USERS_ENDPOINT = `${BACKEND_URL}/users`;
 const SIGNUP_FORM_ENDPOINT = `${BACKEND_URL}/signup/form`;
 
-function fieldsToAnswers(fields) {
-  const answers = {};
-  fields.forEach(({ FLD_NM }) => {
-    answers[FLD_NM] = '';
-  });
-  return answers;
-}
+const FORM = [];
 
-function Form({ fields }) {
-  const [answers, setAnswers] = useState(fieldsToAnswers(fields));
+const Form = ({ fields }) => {
+  const [answers, setAnswers] = useState({});
+  const [formFields, setFormFields] = useState([]);
+
+  useEffect(() => {
+    async function fetchForm() {
+      try {
+        const response = await axios.get(SIGNUP_FORM_ENDPOINT);
+        setFormFields(response.data.signup_form);
+        setAnswers(response.data.signup_form.reduce((acc, curr) => {
+          acc[curr.fld_nm] = '';
+          return acc;
+        }, {}));
+      } catch (error) {
+        console.error('Error fetching form:', error);
+      }
+    }
+    fetchForm();
+  }, []);
 
   const answerQuestion = (fieldName, value) => {
     setAnswers({ ...answers, [fieldName]: value });
@@ -24,7 +35,13 @@ function Form({ fields }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(USERS_ENDPOINT, answers);
+      await axios.post(USERS_ENDPOINT, {
+        first_name: answers['first_name'],
+        last_name: answers['last_name'],
+        dob: answers['date_of_birth'],
+        email: answers['email'],
+        password: answers['password']
+      });
       alert('Registered successfully!');
     } catch (error) {
       alert('An error occurred while registering.');
@@ -33,49 +50,53 @@ function Form({ fields }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      {fields.map(({ FLD_NM, type }) => (
-        <div key={FLD_NM}>
-          <label htmlFor={FLD_NM}>{FLD_NM}</label>
-          <input
-            id={FLD_NM}
-            type={type}
-            value={answers[FLD_NM]}
-            onChange={(e) => {
-              answerQuestion(FLD_NM, e.target.value);
-            }}
-          />
+      {formFields.map((field) => (
+        <div key={field.fld_nm}>
+          {field.instructions ? (
+            <p>{field.question}</p>
+          ) : (
+            <>
+              <label htmlFor={field.fld_nm}>{field.question}</label>
+              {field.param_type === 'date' ? (
+                <input
+                  id={field.fld_nm}
+                  type="date"
+                  value={answers[field.fld_nm]}
+                  onChange={(e) => { answerQuestion(field.fld_nm, e.target.value); }}
+                />
+              ) : field.param_type === 'password' ? (
+                <input
+                  id={field.fld_nm}
+                  type="password"
+                  value={answers[field.fld_nm]}
+                  onChange={(e) => { answerQuestion(field.fld_nm, e.target.value); }}
+                />
+              ) : (
+                <input
+                  id={field.fld_nm}
+                  type="text"
+                  value={answers[field.fld_nm]}
+                  onChange={(e) => { answerQuestion(field.fld_nm, e.target.value); }}
+                />
+              )}
+            </>
+          )}
         </div>
       ))}
       <button type="submit">Sign Up</button>
     </form>
   );
-}
+};
 
 Form.propTypes = {
-  fields: PropTypes.arrayOf(
-    PropTypes.shape({
-      FLD_NM: PropTypes.string,
-      type: PropTypes.string,
-    })
-  ).isRequired,
+  fields: PropTypes.arrayOf(PropTypes.shape({
+    fld_nm: PropTypes.string,
+    question: PropTypes.string,
+    param_type: PropTypes.string,
+    instructions: PropTypes.bool
+  })).isRequired,
 };
 
 export default function FormWrapper() {
-  const [formFields, setFormFields] = useState([]);
-
-  useEffect(() => {
-    async function fetchForm() {
-      try {
-        const response = await axios.get(SIGNUP_FORM_ENDPOINT);
-        const formFieldsData = response.data;
-        setFormFields(formFieldsData);
-      } catch (error) {
-        console.error('Error fetching form:', error);
-      }
-    }
-
-    fetchForm();
-  }, []);
-
-  return <Form fields={formFields} />;
+  return <Form fields={FORM} />;
 }
