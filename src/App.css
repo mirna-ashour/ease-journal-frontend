@@ -1,20 +1,18 @@
-/* Reset and Box Model */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-/* Base Styles */
 html {
-  --dark-blue: rgb(74, 125, 158);
-  --light-blue: rgb(170, 226, 252);
-  --crisp-blue: hsla(202, 100%, 50%, 1);
+  --dark-blue: hsla(214, 47%, 23%, 1);
+  --light-blue: rgb(194, 236, 255);
+  --crisp-blue: rgb(201, 235, 255);
   --cool-gray: hsla(217, 19%, 35%, 1);
   --light-gray: hsla(0, 0%, 96%, 1);
   --off-white: hsla(0, 0%, 100%, 1);
-  --bistre: #3d2b1f;
-  --poppy: #e35335;
+  --bistre: #3d2b1f; /* added for consistency */
+  --poppy: #e35335; /* vibrant color for emphasis */
   --sky-blue: #c7f0ff;
   --lemon-chiffon: #fffacd;
   --buff: #f0dc82;
@@ -23,26 +21,17 @@ html {
   --primary-color: var(--crisp-blue);
   --text-color: var(--cool-gray);
   --button-color: var(--dark-blue);
-  --accent-color: var(--dark-blue);
+  --accent-color: var(--dark-blue); /* For consistency in styling elements */
 
   background-color: var(--background-color);
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-body {
-  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
-
-/* Layout Containers */
-.wrapper, .app-container, .login-container, .category-container, .journal-container, .user-container {
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .app-container {
   max-width: 100%;
   margin: auto;
+  /* padding: 20px; */
+  /* display: flex; */
   flex-direction: column;
   align-items: center;
 }
@@ -52,20 +41,38 @@ body {
   margin-left: 45%;
 }
 
-/* Animations */
 @keyframes backgroundAnimation {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
-@keyframes moveGradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+/* Enhancing the overall background and theme */
+html {
+  --dark-blue: rgb(74, 125, 158);
+  --light-blue: rgb(170, 226, 252);
+  --crisp-blue: hsla(202, 100%, 50%, 1);
+  --cool-gray: hsla(217, 19%, 35%, 1);
+  --light-gray: hsla(0, 0%, 96%, 1);
+  --off-white: hsla(0, 0%, 100%, 1);
+
+  --background-color: var(--light-gray);
+  --primary-color: var(--crisp-blue);
+  --text-color: var(--cool-gray);
+  --button-color: var(--dark-blue);
+  background-color: var(--light-blue);
+
+  /* background: linear-gradient(135deg, var(--light-blue) 0%, var(--crisp-blue) 100%); */
+  background-size: cover;
+  animation: backgroundAnimation 60s ease infinite;
 }
 
-/* Page Sections */
+
+/* Use a modern sans-serif font that is web-safe and easy to read */
+body {
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
 .login-page {
   display: flex;
   justify-content: center;
@@ -74,82 +81,60 @@ body {
   height: 80vh;
   width: 50%;
   background-color: var(--dark-blue);
-  padding: 2rem;
+  background-size: 400% 400%;
   animation: backgroundAnimation 15s ease infinite;
+  padding: 2rem; /* Add padding to ensure some space around the login card */
 }
 
+/* Styling for the login container to center and visually separate it from the background */
 .login-container {
   padding: 1rem;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.9); /* Slightly see-through */
   border-radius: 10px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
   width: 50%;
   max-width: 400px;
-  max-height: 90%;
-  overflow-y: auto;
+  max-height: 90%; /* Prevents the card from being too tall */
+  overflow-y: auto; /* Allows scrolling if content is too long */
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border: 1px solid #dee2e6;
+  border: 1px solid #dee2e6; /* Bootstrap-like border color */
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
-/* Navigation */
-nav {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background-color: var(--accent-color);
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 2rem;
-  padding: 0;
-  justify-content: center;
-}
-
-nav ul li.active a {
-  background: var(--button-color);
-  color: var(--off-white);
-}
-
-nav a {
-  color: var(--background-color);
-  display: block;
-  padding: 1rem;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 5px;
-  position: relative;
-  transform: scale(1.05);
-}
-
-/* Form Styles */
 .login-form {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
-.login-form input, .login-form button {
+.login-form h2 {
+  color: var(--bistre);
+  text-align: center; /* Centers the heading */
+  margin-bottom: 1rem;
+}
+
+/* Improve form element styling for a more modern look */
+.login-form input, .login-form button, form input, form button {
   border: 1px solid var(--cool-gray);
   border-radius: 8px;
   padding: 0.8rem;
   margin: 0.5rem 0;
 }
 
-.login-form button:hover {
+/* Updated button styles for better user interaction */
+.login-form button:hover, form button:hover {
   opacity: 0.85;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.login-form input:focus {
-  border-color: var(--sky-blue);
-  box-shadow: 0 0 0 2px var(--sky-blue);
+/* Enhanced navigation bar */
+nav ul {
+  justify-content: center; /* Center navigation items */
 }
 
-/* Responsive Design */
+/* Improved responsiveness */
 @media (max-width: 768px) {
   .login-container, .category-container, .journal-container, .user-container {
     width: 90%;
@@ -161,10 +146,226 @@ nav a {
   }
 }
 
-/* Additional Styling */
+.login-form button.login-button {
+  background: var(--bistre);
+  color: var(--off-white);
+}
+
+.login-form button.google-signin-button {
+  background: #db4437; /* Google red */
+  color: white;
+}
+
+.login-form button:hover {
+  opacity: 0.9; /* Slight effect for hover state */
+}
+
+/* Add a subtle animation on input focus */
+.login-form input:focus {
+  border-color: var(--sky-blue);
+  box-shadow: 0 0 0 2px var(--sky-blue);
+}
+
+.register-link {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.register-link a {
+  color: var(--bistre);
+  text-decoration: underline; /* Makes it clear it's a clickable link */
+  transition: color 0.3s ease;
+}
+
+.register-link a:hover {
+  color: var(--poppy);
+}
+
+/* Additional styles for enhancing text and spacing */
+h1, p {
+  text-align: center;
+  color: var(--text-color);
+}
+
+h1 {
+  margin-top: 0;
+  color: var(--dark-blue);
+}
+
+/* New gradient border for buttons and inputs */
+.gradient-border {
+  border: none;
+  position: relative;
+}
+.gradient-border::after {
+  content: '';
+  position: absolute;
+  top: -2px; right: -2px; bottom: -2px; left: -2px;
+  z-index: -1;
+  background: linear-gradient(60deg, var(--poppy), var(--sky-blue), var(--lemon-chiffon), var(--buff));
+  background-size: 300% 300%;
+  border-radius: 8px;
+  animation: moveGradient 4s alternate infinite;
+}
+
+@keyframes moveGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Ensure that the primary elements have a maximum width for better readability on large screens */
+.wrapper, .login-container, .category-container, .journal-container, .user-container {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wrapper header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Smooth transitions for all hoverable elements */
+*, button, a {
+  transition: all 0.3s ease;
+}
+
+button {
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+
+  border-radius: 5px;
+  border: 2px solid var(--accent-color);
+  color: var(--accent-color);
+  background: var(--background-color);
+}
+button:focus,
+button:hover {
+  background: var(--accent-color);
+  color: var(--background-color);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
 .error-message {
   border: 2px solid var(--buff);
   padding: 1em;
   margin: 1em 0;
   border-radius: 5px;
+}
+
+form input {
+  display: block;
+  margin: .5rem 0 1rem 0;
+  padding: 1rem 0.5rem 0.5rem 0.5rem;
+  border-radius: 5px;
+  border: 2px solid var(--accent-color);
+  font-size: 1rem;
+}
+
+form label {
+  margin-left: 1rem;
+  display: block;
+  height: 0;
+  width: fit-content;
+  position: relative;
+  z-index: 1;
+}
+form label::before,
+form label::after {
+  content: '';
+  position: absolute;
+  height: 1.65rem;
+  top: -.25rem;
+  left: -5px;
+  width: calc(100% + 10px);
+  border: 2px solid var(--accent-color);
+  border-radius: 5px;
+  background-color: white;
+  z-index: -1;
+}
+
+form button {
+  margin-right: 1rem;
+}
+form button[type=button] {
+  border-color: var(--background-color);
+}
+form button[type=button]:focus,
+form button[type=button]:hover {
+  border-color: var(--accent-color);
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  margin: 0;
+  padding-top: 0.5rem;
+  background-color: var(--accent-color);
+}
+
+nav ul li.active a {
+  background: var(--button-color);
+  color: var(--off-white);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  padding: 0;
+}
+
+nav a {
+  color: var(--background-color);
+  display: block;
+  --padding: 1rem;
+  padding: var(--padding);
+  text-decoration: none;
+  font-weight: bold;
+  --border-radius: 15px;
+  border-radius: 5px 5px 0 0;
+  position: relative;
+  transform: scale(1.05);
+}
+
+nav a:hover,
+nav a:focus {
+  background-color: var(--background-color);
+  color: var(--accent-color);
+  outline: none;
+}
+
+.category-container,
+.journal-container,
+.user-container {
+  border: 2px solid var(--accent-color);
+  margin: 1rem 0;
+  padding: 1.5rem;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.category-container h2,
+.journal-container h2,
+.user-container h2 {
+  margin-top: 0; /* Remove margin from the top of the heading */
+  margin-bottom: 1rem; /* Add some space below headings */
+
+  overflow: hidden; /* Ensures the content is clipped */
+  white-space: nowrap; /* Keeps the content on a single line */
+  border-right: 3px solid var(--accent-color); /* The typwriter cursor */
+  /* animation: typingAnimation 5s steps(40, end), blink-caret .75s step-end infinite; */ /* Remove or comment out these lines */
+}
+
+.category-container p,
+.journal-container p,
+.user-container p {
+  margin: 0;
+  font-size: 1.2rem; /* Reduce font size slightly for better readability */
 }
