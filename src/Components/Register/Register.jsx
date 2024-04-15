@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { BACKEND_URL } from '../../constants';
+import { useNavigate } from 'react-router-dom';
+
 
 const USERS_ENDPOINT = `${BACKEND_URL}/users`;
 const SIGNUP_FORM_ENDPOINT = `${BACKEND_URL}/signup/form`;
@@ -11,6 +13,8 @@ const FORM = [];
 const Form = ({ fields }) => {
   const [answers, setAnswers] = useState({});
   const [formFields, setFormFields] = useState([]);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     async function fetchForm() {
@@ -43,6 +47,7 @@ const Form = ({ fields }) => {
         password: answers['password']
       });
       alert('Registered successfully!');
+      navigate('/login');
     } catch (error) {
       alert('An error occurred while registering.');
     }
