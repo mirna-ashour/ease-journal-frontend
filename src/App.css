@@ -21,24 +21,24 @@ html {
   --primary-color: var(--crisp-blue);
   --text-color: var(--cool-gray);
   --button-color: var(--dark-blue);
-  --accent-color: var(--crisp-blue); /* For consistency in styling elements */
+  --accent-color: var(--dark-blue); /* For consistency in styling elements */
 
   background-color: var(--background-color);
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .app-container {
-  max-width: 1200px;
+  max-width: 100%;
   margin: auto;
-  padding: 20px;
-  display: flex;
+  /* padding: 20px; */
+  /* display: flex; */
   flex-direction: column;
   align-items: center;
 }
 
 .logo-container img {
-  max-width: 200px;
-  margin: 2rem 0;
+  max-width: 150px;
+  margin-left: 45%;
 }
 
 @keyframes backgroundAnimation {
@@ -77,8 +77,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background: linear-gradient(-45deg, var(--sky-blue), var(--lemon-chiffon), var(--poppy), var(--buff));
+  margin-left: 25%;
+  height: 80vh;
+  width: 50%;
+  background-color: var(--dark-blue);
   background-size: 400% 400%;
   animation: backgroundAnimation 15s ease infinite;
   padding: 2rem; /* Add padding to ensure some space around the login card */
@@ -90,7 +92,7 @@ body {
   background: rgba(255, 255, 255, 0.9); /* Slightly see-through */
   border-radius: 10px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-  width: 100%;
+  width: 50%;
   max-width: 400px;
   max-height: 90%; /* Prevents the card from being too tall */
   overflow-y: auto; /* Allows scrolling if content is too long */
@@ -331,7 +333,7 @@ nav a {
   position: relative;
   transform: scale(1.05);
 }
-nav a:hover::before,
+/* nav a:hover::before,
 nav a:focus::before {
   content: '';
   position: absolute;
@@ -354,7 +356,7 @@ nav a:focus::after {
   background-color: var(--accent-color);
   bottom: 0;
   right: calc(var(--padding) * -1 + 1px);
-}
+} */
 
 nav a:hover,
 nav a:focus {
