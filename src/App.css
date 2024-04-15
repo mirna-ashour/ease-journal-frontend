@@ -6,14 +6,14 @@
 
 html {
   --dark-blue: hsla(214, 47%, 23%, 1);
-  --light-blue: rgb(103, 183, 220);
-  --crisp-blue: hsla(202, 100%, 50%, 1);
+  --light-blue: rgb(194, 236, 255);
+  --crisp-blue: rgb(201, 235, 255);
   --cool-gray: hsla(217, 19%, 35%, 1);
   --light-gray: hsla(0, 0%, 96%, 1);
   --off-white: hsla(0, 0%, 100%, 1);
   --bistre: #3d2b1f; /* added for consistency */
   --poppy: #e35335; /* vibrant color for emphasis */
-  --sky-blue: #7ec8e3;
+  --sky-blue: #c7f0ff;
   --lemon-chiffon: #fffacd;
   --buff: #f0dc82;
 
@@ -49,8 +49,8 @@ html {
 
 /* Enhancing the overall background and theme */
 html {
-  --dark-blue: hsla(214, 47%, 23%, 1);
-  --light-blue: rgb(103, 183, 220);
+  --dark-blue: rgb(74, 125, 158);
+  --light-blue: rgb(170, 226, 252);
   --crisp-blue: hsla(202, 100%, 50%, 1);
   --cool-gray: hsla(217, 19%, 35%, 1);
   --light-gray: hsla(0, 0%, 96%, 1);
@@ -60,9 +60,9 @@ html {
   --primary-color: var(--crisp-blue);
   --text-color: var(--cool-gray);
   --button-color: var(--dark-blue);
-  background-color: var(--background-color);
+  background-color: var(--light-blue);
 
-  background: linear-gradient(135deg, var(--light-blue) 0%, var(--crisp-blue) 100%);
+  /* background: linear-gradient(135deg, var(--light-blue) 0%, var(--crisp-blue) 100%); */
   background-size: cover;
   animation: backgroundAnimation 60s ease infinite;
 }

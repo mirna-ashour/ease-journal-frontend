@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import './App.css';
 import Navbar from './Components/Navbar';
@@ -38,12 +38,15 @@ function HomePage({ profile }) {
 function App() {
   const navigate = useNavigate();
   const [profile, setProfile] = useState(null);
+  const location = useLocation();
+  console.log(location.pathname)
 
   useEffect(() => {
     const authCookie = Cookies.get('auth');
     if (authCookie) {
       setProfile(JSON.parse(authCookie));
-    } else {
+    } 
+    else if(location.pathname !== "/register") {
       setProfile(null);
       navigate("/login");
     }
@@ -51,7 +54,9 @@ function App() {
 
   return (
     <div className="app-container">
-      <Navbar/>
+      {profile && (
+        <Navbar/>
+      )}
       <div className="logo-container">
         <img src={Logo} alt="Ease Journal Logo" />
       </div>
