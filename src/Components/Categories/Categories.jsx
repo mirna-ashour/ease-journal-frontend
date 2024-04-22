@@ -92,8 +92,8 @@ function Categories({profile}) {
 
 			{categories.map((category) => (
 				<div key={category.category_id} className="category-container">
-					 {/* <h2>Category_id: {category.category_id}</h2> */}
-					 <p>Category_name: {category.category_name}</p>
+					 <h2>Category_id: {category.category_id}</h2>
+					 <h2>Category_name: {category.category_name}</h2>
 					 {/* <p>User_id: {category.user}</p> */}
 					 <p>Date created: {category.created}</p>
 					 {/* <p>Number of journals: {category.journals}</p> */}

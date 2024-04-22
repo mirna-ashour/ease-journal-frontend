@@ -182,7 +182,7 @@ nav ul {
 }
 
 /* Additional styles for enhancing text and spacing */
-h1, p {
+h1 {
   text-align: center;
   color: var(--text-color);
 }

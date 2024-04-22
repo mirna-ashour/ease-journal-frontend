@@ -6,7 +6,7 @@ import { BACKEND_URL } from '../../constants';
 const JOURNALS_ENDPOINT = `${BACKEND_URL}/journals`;
 
 
-function AddJournal({ setError, fetchJournals }) {
+function AddJournal({ setError, fetchJournals, profile }) {
 	const [title, setTitle] = useState('');
 	const [content, setContent] =useState('');
 	const prompt = "None" 		// temporary prompt value until prompt generation is added
@@ -16,7 +16,7 @@ function AddJournal({ setError, fetchJournals }) {
 
 	const addJournal = (event) => {
 		event.preventDefault();
-		axios.post(JOURNALS_ENDPOINT, { title: title, content: content, prompt: prompt }) // actual attribute name: this file's var/val
+		axios.post(JOURNALS_ENDPOINT, { title: title, content: content, prompt: prompt, user_id: profile.user_id, category_id: '08057681' }) // actual attribute name: this file's var/val
 			.then(() => {
 				setError('');
 				fetchJournals();
@@ -37,7 +37,7 @@ function AddJournal({ setError, fetchJournals }) {
 	return (
 		<form>
 			<label htmlFor="title">
-				Journal Title
+				Entry Title
 			</label>
 			<input type="text" id="title" value={title} onChange={changeTitle} />
 
@@ -46,13 +46,13 @@ function AddJournal({ setError, fetchJournals }) {
 			</label>
 			<input type="text" id="content" value={content} onChange={changeContent} />
 
-			<button type="submit" onClick={addJournal}>Submit</button>
+			<button type="submit" onClick={addJournal}>Add</button>
 		</form>
 	);
 }
 
 
-function Journals() {
+function Journals({profile}) {
 
 	const [error, setError] = useState('');
 	const [journals, setJournals] = useState([]);
@@ -91,17 +91,17 @@ function Journals() {
 				</div>
 			)}
 
-			<AddJournal setError={setError} fetchJournals={fetchJournals} />
+			<AddJournal setError={setError} fetchJournals={fetchJournals} profile={profile}/>
 
 			{journals.map((journal) => (
 				<div className="category-container">
-					 <h2>Journal_id: {journal.journal_id}</h2>
-					 <p>Timestamp: {journal.timestamp}</p>
-					 <p>Title: {journal.title}</p>
-					 <p>Prompt: {journal.prompt}</p>
+					 <h2>Title: {journal.title}</h2>
+					 {/* <p>Category: {journal.category}</p> */}
+					 {/* <h2>Journal_id: {journal.journal_id}</h2> */}
+					 <p>Created: {journal.timestamp}</p>
+					 {/* <p>Prompt: {journal.prompt}</p> */}
 					 <p>Content: {journal.content}</p>
-					 <p>Modified: {journal.modified}</p>
-					 <p>Category: {journal.category}</p>
+					 <p>Last Modified: {journal.modified}</p>
 
 				</div>
 			))}
