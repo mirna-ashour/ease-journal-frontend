@@ -63,9 +63,9 @@ function App() {
       <Routes>
         <Route path="/" element={ <HomePage profile={profile}/> } />
         <Route path="login" element={<Login/>} />
-        <Route path="categories" element={<Categories/>} />
+        <Route path="categories" element={<Categories profile={profile} />} />
         <Route path="users" element={<Users/>} />
-        <Route path="journals" element={<Journals/>} />
+        <Route path="journals" element={<Journals profile={profile} />} />
         <Route path="register" element={<Register/>} />
       </Routes>
     </div>
