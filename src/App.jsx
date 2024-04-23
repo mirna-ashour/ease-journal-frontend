@@ -50,7 +50,7 @@ function App() {
       setProfile(null);
       navigate("/login");
     }
-  }, [navigate]);
+  }, [navigate, location.pathname]);
 
   return (
     <div className="app-container">

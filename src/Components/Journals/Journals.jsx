@@ -78,7 +78,7 @@ function Journals({profile}) {
 	
 	useEffect(
 		fetchJournals,
-		[],
+		[categoryId],
 	)
 
 	return (
