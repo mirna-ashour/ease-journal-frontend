@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 import { BACKEND_URL } from '../../constants';
 
@@ -56,9 +57,10 @@ function Journals({profile}) {
 
 	const [error, setError] = useState('');
 	const [journals, setJournals] = useState([]);
+	const { categoryId } = useParams();
 
 	const fetchJournals = () => {
-		axios.get(JOURNALS_ENDPOINT)
+		axios.get(`${JOURNALS_ENDPOINT}/${categoryId}`)
 			.then((response) => {
 				const journalsObject = response.data.Data;
 				const keys = Object.keys(journalsObject);

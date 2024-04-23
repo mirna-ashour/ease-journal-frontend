@@ -65,7 +65,7 @@ function App() {
         <Route path="login" element={<Login/>} />
         <Route path="categories" element={<Categories profile={profile} />} />
         <Route path="users" element={<Users/>} />
-        <Route path="journals" element={<Journals profile={profile} />} />
+        <Route path="/journals/:categoryId" element={<Journals profile={profile} />} />
         <Route path="register" element={<Register/>} />
       </Routes>
     </div>

@@ -3,9 +3,9 @@ import { Link, useLocation } from 'react-router-dom';
 
 const PAGES = [
   { label: 'Home', destination: '/' },
-  { label: 'Categories', destination: '/categories' },
+  { label: 'My Categories', destination: '/categories' },
   { label: 'Users', destination: '/users' },
-  { label: 'Journals', destination: '/journals' },
+  // { label: 'Journals', destination: '/journals' },
 ];
 
 function Navbar() {

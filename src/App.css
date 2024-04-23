@@ -140,6 +140,7 @@ nav ul {
     width: 90%;
     margin-left: auto;
     margin-right: auto;
+    text-decoration: none;
   }
   nav ul {
     flex-direction: column;

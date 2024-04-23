@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 import { BACKEND_URL } from '../../constants';
 
@@ -15,7 +16,7 @@ function AddCategoryForm({ setError, fetchCategories, profile }) {
 
 	const addCategory = (event) => {
 		event.preventDefault();
-		axios.post(CATEGORIES_ENDPOINT, { category_name: category_name, user: profile.user_id }) // actual attribute name: this file's var/val
+		axios.post(CATEGORIES_ENDPOINT, { category_name: category_name, user: profile.user_id }) 
 			.then(() => {
 				setError('');
 				fetchCategories();
@@ -91,13 +92,15 @@ function Categories({profile}) {
 			<AddCategoryForm setError={setError} fetchCategories={fetchCategories} profile={profile}/>
 
 			{categories.map((category) => (
-				<div key={category.category_id} className="category-container">
-					 <h2>Category_id: {category.category_id}</h2>
-					 <h2>Category_name: {category.category_name}</h2>
-					 {/* <p>User_id: {category.user}</p> */}
-					 <p>Date created: {category.created}</p>
-					 {/* <p>Number of journals: {category.journals}</p> */}
-				</div>
+				<Link key={category.category_id} to={`/journals/${category.category_id}`}>
+					<div key={category.category_id} className="category-container">
+						{/* <h2>Category_id: {category.category_id}</h2> */}
+						<h2>Category_name: {category.category_name}</h2>
+						{/* <p>User_id: {category.user}</p> */}
+						<p>Date created: {category.created}</p>
+						{/* <p>Number of journals: {category.journals}</p> */}
+					</div>
+				</Link>
 			))}
 		</div>
 	);
