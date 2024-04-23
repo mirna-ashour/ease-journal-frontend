@@ -7,11 +7,11 @@
 html {
   --dark-blue: hsla(214, 47%, 23%, 1);
   --light-blue: rgb(194, 236, 255);
-  --crisp-blue: rgb(201, 235, 255);
-  --cool-gray: hsla(217, 19%, 35%, 1);
+  --crisp-blue: #CAF0F8;
+  --cool-gray: #03045E;
   --light-gray: hsla(0, 0%, 96%, 1);
   --off-white: hsla(0, 0%, 100%, 1);
-  --bistre: #3d2b1f; /* added for consistency */
+  --bistre: 3d2b1f; 
   --poppy: #e35335; /* vibrant color for emphasis */
   --sky-blue: #c7f0ff;
   --lemon-chiffon: #fffacd;
@@ -49,8 +49,8 @@ html {
 
 /* Enhancing the overall background and theme */
 html {
-  --dark-blue: rgb(74, 125, 158);
-  --light-blue: rgb(170, 226, 252);
+  --dark-blue: #0077B6;
+  --light-blue: #CAF0F8;
   --crisp-blue: hsla(202, 100%, 50%, 1);
   --cool-gray: hsla(217, 19%, 35%, 1);
   --light-gray: hsla(0, 0%, 96%, 1);
@@ -83,16 +83,17 @@ body {
   background-color: var(--dark-blue);
   background-size: 400% 400%;
   animation: backgroundAnimation 15s ease infinite;
-  padding: 2rem; /* Add padding to ensure some space around the login card */
+  padding: 2rem; 
+  border-radius: 2%;
 }
 
 /* Styling for the login container to center and visually separate it from the background */
 .login-container {
-  padding: 1rem;
-  background: rgba(255, 255, 255, 0.9); /* Slightly see-through */
+  padding: 3rem;
+  background: rgba(255, 255, 255, 0.9); 
   border-radius: 10px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-  width: 50%;
+  width: 65%;
   max-width: 400px;
   max-height: 90%; /* Prevents the card from being too tall */
   overflow-y: auto; /* Allows scrolling if content is too long */
@@ -107,6 +108,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border-radius: 10%;
 }
 
 .login-form h2 {
@@ -117,10 +119,11 @@ body {
 
 /* Improve form element styling for a more modern look */
 .login-form input, .login-form button, form input, form button {
-  border: 1px solid var(--cool-gray);
+  border: none;
   border-radius: 8px;
   padding: 0.8rem;
   margin: 0.5rem 0;
+  font-size: 18px;
 }
 
 /* Updated button styles for better user interaction */
@@ -148,7 +151,7 @@ nav ul {
 }
 
 .login-form button.login-button {
-  background: var(--bistre);
+  background: #03045E;
   color: var(--off-white);
 }
 

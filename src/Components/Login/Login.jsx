@@ -47,11 +47,10 @@ function Login() {
                     </div>
                 )}
                 <form className="login-form" onSubmit={handleLogin}>
-                    <h2>USER LOGIN</h2>
+                    <h2>LOGIN</h2><br></br>
                     <input type="email" placeholder="Email" value={email} onChange={handleEmailChange} />
                     <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
                     <button type="submit" className="login-button">Login</button>
-                    {/* <button type="button" className="google-signin-button" onClick={login}>Sign in with Google</button> */}
                     <p className="register-link">
                         <Link to="/register">Create an account</Link>
                     </p>
