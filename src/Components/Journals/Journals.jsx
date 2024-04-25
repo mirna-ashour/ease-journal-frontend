@@ -11,14 +11,14 @@ function AddJournal({ setError, fetchJournals, profile }) {
 	const [title, setTitle] = useState('');
 	const [content, setContent] =useState('');
 	const prompt = "None" 		// temporary prompt value until prompt generation is added
-	const { category_id } = useParams();
+	const { categoryId } = useParams();
 
 	const changeTitle = (event) => { setTitle(event.target.value); };
 	const changeContent = (event) => { setContent(event.target.value); };
 
 	const addJournal = (event) => {
 		event.preventDefault();
-		axios.post(JOURNALS_ENDPOINT, { title: title, content: content, prompt: prompt, user_id: profile.user_id, category_id: category_id }) // actual attribute name: this file's var/val
+		axios.post(JOURNALS_ENDPOINT, { title: title, prompt: prompt, content: content, user: profile.user_id, category: categoryId }) // actual attribute name: this file's var/val
 			.then(() => {
 				setError('');
 				fetchJournals();
