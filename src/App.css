@@ -122,10 +122,11 @@ body {
 }
 
 .register-form h2 {
-  margin-top: 10rem;
+  margin-top: 8rem;
 }
 
 .register-form p {
+  margin-top: 0px;
   font-size: 12px;
 }
 
@@ -165,6 +166,10 @@ nav ul {
 .login-form button.login-button, .register-form button.register-button {
   background: #03045E;
   color: var(--off-white);
+}
+
+.register-form button.register-button {
+  margin-top: 1.5rem;
 }
 
 .login-form button.google-signin-button {

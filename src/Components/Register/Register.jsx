@@ -64,10 +64,10 @@ const Form = ({ fields }) => {
                 <p>{field.question}</p>
               ) : (
                 <>
-                  <label htmlFor={field.fld_nm}>{field.question}</label>
                   {field.param_type === 'date' ? (
                     <input
                       id={field.fld_nm}
+                      placeholder={field.question}
                       type="date"
                       value={answers[field.fld_nm]}
                       onChange={(e) => { answerQuestion(field.fld_nm, e.target.value); }}
@@ -75,6 +75,7 @@ const Form = ({ fields }) => {
                   ) : field.param_type === 'password' ? (
                     <input
                       id={field.fld_nm}
+                      placeholder={field.question}
                       type="password"
                       value={answers[field.fld_nm]}
                       onChange={(e) => { answerQuestion(field.fld_nm, e.target.value); }}
@@ -82,6 +83,7 @@ const Form = ({ fields }) => {
                   ) : (
                     <input
                       id={field.fld_nm}
+                      placeholder={field.question}
                       type="text"
                       value={answers[field.fld_nm]}
                       onChange={(e) => { answerQuestion(field.fld_nm, e.target.value); }}
