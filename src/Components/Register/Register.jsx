@@ -54,42 +54,47 @@ const Form = ({ fields }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      {formFields.map((field) => (
-        <div key={field.fld_nm}>
-          {field.instructions ? (
-            <p>{field.question}</p>
-          ) : (
-            <>
-              <label htmlFor={field.fld_nm}>{field.question}</label>
-              {field.param_type === 'date' ? (
-                <input
-                  id={field.fld_nm}
-                  type="date"
-                  value={answers[field.fld_nm]}
-                  onChange={(e) => { answerQuestion(field.fld_nm, e.target.value); }}
-                />
-              ) : field.param_type === 'password' ? (
-                <input
-                  id={field.fld_nm}
-                  type="password"
-                  value={answers[field.fld_nm]}
-                  onChange={(e) => { answerQuestion(field.fld_nm, e.target.value); }}
-                />
+    <div className="register-page">
+      <div className="register-container">
+        <form className="register-form" onSubmit={handleSubmit}>
+          <h2>REGISTER</h2><br></br>
+          {formFields.map((field) => (
+            <div key={field.fld_nm}>
+              {field.instructions ? (
+                <p>{field.question}</p>
               ) : (
-                <input
-                  id={field.fld_nm}
-                  type="text"
-                  value={answers[field.fld_nm]}
-                  onChange={(e) => { answerQuestion(field.fld_nm, e.target.value); }}
-                />
+                <>
+                  <label htmlFor={field.fld_nm}>{field.question}</label>
+                  {field.param_type === 'date' ? (
+                    <input
+                      id={field.fld_nm}
+                      type="date"
+                      value={answers[field.fld_nm]}
+                      onChange={(e) => { answerQuestion(field.fld_nm, e.target.value); }}
+                    />
+                  ) : field.param_type === 'password' ? (
+                    <input
+                      id={field.fld_nm}
+                      type="password"
+                      value={answers[field.fld_nm]}
+                      onChange={(e) => { answerQuestion(field.fld_nm, e.target.value); }}
+                    />
+                  ) : (
+                    <input
+                      id={field.fld_nm}
+                      type="text"
+                      value={answers[field.fld_nm]}
+                      onChange={(e) => { answerQuestion(field.fld_nm, e.target.value); }}
+                    />
+                  )}
+                </>
               )}
-            </>
-          )}
-        </div>
-      ))}
-      <button type="submit">Sign Up</button>
-    </form>
+            </div>
+          ))}
+          <button className="register-button" type="submit">Register</button>
+        </form>
+      </div>
+    </div>
   );
 };
 

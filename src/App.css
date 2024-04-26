@@ -73,7 +73,7 @@ body {
   font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-.login-page {
+.login-page, .register-page {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -87,8 +87,12 @@ body {
   border-radius: 2%;
 }
 
+.register-page {
+  height: 100vh;
+}
+
 /* Styling for the login container to center and visually separate it from the background */
-.login-container {
+.login-container, .register-container {
   padding: 3rem;
   background: rgba(255, 255, 255, 0.9); 
   border-radius: 10px;
@@ -104,21 +108,29 @@ body {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
-.login-form {
+.login-form, .register-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   border-radius: 10%;
 }
 
-.login-form h2 {
+.login-form h2, .register-form h2 {
   color: var(--bistre);
   text-align: center; /* Centers the heading */
   margin-bottom: 1rem;
 }
 
+.register-form h2 {
+  margin-top: 10rem;
+}
+
+.register-form p {
+  font-size: 12px;
+}
+
 /* Improve form element styling for a more modern look */
-.login-form input, .login-form button, form input, form button {
+.login-form input, .login-form button, .register-form input, .register-form button, form input, form button {
   border: none;
   border-radius: 8px;
   padding: 0.8rem;
@@ -127,7 +139,7 @@ body {
 }
 
 /* Updated button styles for better user interaction */
-.login-form button:hover, form button:hover {
+.login-form button:hover, .register-form button:hover, form button:hover {
   opacity: 0.85;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
@@ -139,7 +151,7 @@ nav ul {
 
 /* Improved responsiveness */
 @media (max-width: 768px) {
-  .login-container, .category-container, .journal-container, .user-container {
+  .login-container, .register-container, .category-container, .journal-container, .user-container {
     width: 90%;
     margin-left: auto;
     margin-right: auto;
@@ -150,7 +162,7 @@ nav ul {
   }
 }
 
-.login-form button.login-button {
+.login-form button.login-button, .register-form button.register-button {
   background: #03045E;
   color: var(--off-white);
 }
@@ -160,12 +172,12 @@ nav ul {
   color: white;
 }
 
-.login-form button:hover {
+.login-form button:hover, .register-form button:hover {
   opacity: 0.9; /* Slight effect for hover state */
 }
 
 /* Add a subtle animation on input focus */
-.login-form input:focus {
+.login-form input:focus, .register-form input:focus {
   border-color: var(--sky-blue);
   box-shadow: 0 0 0 2px var(--sky-blue);
 }
@@ -219,7 +231,7 @@ h1 {
 }
 
 /* Ensure that the primary elements have a maximum width for better readability on large screens */
-.wrapper, .login-container, .category-container, .journal-container, .user-container {
+.wrapper, .login-container, .register-container, .category-container, .journal-container, .user-container {
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
