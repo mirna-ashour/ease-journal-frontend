@@ -9,10 +9,8 @@ const CATEGORIES_ENDPOINT = `${BACKEND_URL}/categories`;
 
 function AddCategoryForm({ setError, fetchCategories, profile }) {
 	const [category_name, setName] = useState('');
-	// const [user, setUser] = useState('');
 
 	const changeName = (event) => { setName(event.target.value); };
-	// const changeUser  = (event) => {  setUser(event.target.value); };
 
 	const addCategory = (event) => {
 		event.preventDefault();
@@ -40,12 +38,6 @@ function AddCategoryForm({ setError, fetchCategories, profile }) {
 				Category Name
 			</label>
 			<input type="text" id="category_name" value={category_name} onChange={changeName} />
-
-			{/* <label htmlFor="user">
-				User ID
-			</label>
-			<input type="text" id="user" value={user} onChange={changeUser} /> */}
-
 			<button type="submit" onClick={addCategory}>Add</button>
 		</form>
 	);
@@ -80,7 +72,7 @@ function Categories({profile}) {
 	return (
 		<div className="wrapper">
 			<h1>
-				Categories
+				All Categories
 			</h1>
 			
 			{error && (
@@ -94,10 +86,8 @@ function Categories({profile}) {
 			{categories.map((category) => (
 				<Link key={category.category_id} to={`/journals/${category.category_id}`}>
 					<div key={category.category_id} className="category-container">
-						{/* <h2>Category_id: {category.category_id}</h2> */}
-						<h2>Category_name: {category.category_name}</h2>
-						{/* <p>User_id: {category.user}</p> */}
-						<p>Date created: {category.created}</p>
+						<h2>{category.category_name}</h2>
+						<p>Created: {category.created}</p>
 						{/* <p>Number of journals: {category.journals}</p> */}
 					</div>
 				</Link>

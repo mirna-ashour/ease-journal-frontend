@@ -10,7 +10,7 @@ const JOURNALS_ENDPOINT = `${BACKEND_URL}/journals`;
 function AddJournal({ setError, fetchJournals, profile }) {
 	const [title, setTitle] = useState('');
 	const [content, setContent] =useState('');
-	const prompt = "None" 		// temporary prompt value until prompt generation is added
+	const prompt = "no" 		
 	const { categoryId } = useParams();
 
 	const changeTitle = (event) => { setTitle(event.target.value); };

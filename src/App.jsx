@@ -24,11 +24,12 @@ function HomePage({ profile }) {
 
   return(
     <div className="profile-info">
-      <h3>User Logged in:</h3>
+      <h2>Personal information</h2>
       <p>First name: {profile.first_name}</p>
       <p>Last name: {profile.last_name}</p>
       <p>Dob: {profile.dob}</p>
       <p>Email Address: {profile.email}</p>
+      <br></br><br></br>
       <button className="logout-button" onClick={logOut}>Log out</button>
     </div>
   )

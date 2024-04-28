@@ -73,6 +73,10 @@ body {
   font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+.profile-info {
+  margin-left: 5%;
+}
+
 .login-page, .register-page {
   display: flex;
   justify-content: center;
@@ -90,6 +94,7 @@ body {
 .register-page {
   height: 100vh;
 }
+
 
 /* Styling for the login container to center and visually separate it from the background */
 .login-container, .register-container {
