@@ -37,7 +37,7 @@ function AddCategoryForm({ setError, fetchCategories, profile }) {
 			<label htmlFor="category_name">
 				Category Name
 			</label>
-			<input type="text" id="category_name" value={category_name} onChange={changeName} />
+			<input className="main-form-input" type="text" id="category_name" value={category_name} onChange={changeName} />
 			<button type="submit" onClick={addCategory}>Add</button>
 		</form>
 	);

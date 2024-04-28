@@ -41,27 +41,27 @@ function AddUserForm({ setError, fetchUsers }) {
 			<label htmlFor="first_name">
 				First Name
 			</label>
-			<input type="text" id="first_name" value={first_name} onChange={changeFirstName} />
+			<input className="main-form-input" type="text" id="first_name" value={first_name} onChange={changeFirstName} />
 
 			<label htmlFor="last_name">
 				Last Name
 			</label>
-			<input type="text" id="last_name" value={last_name} onChange={changeLastName} />
+			<input className="main-form-input" type="text" id="last_name" value={last_name} onChange={changeLastName} />
 
 			<label htmlFor="dob">
 				Date of Birth
 			</label>
-			<input type="text" id="dob" value={dob} onChange={changeDob} />
+			<input className="main-form-input" type="date" id="dob" value={dob} onChange={changeDob} />
 
 			<label htmlFor="email">
 				Email
 			</label>
-			<input type="text" id="email" value={email} onChange={changeEmail} />
+			<input className="main-form-input" type="text" id="email" value={email} onChange={changeEmail} />
 
 			<label htmlFor="password">
 				Password
 			</label>
-			<input type="text" id="password" value={password} onChange={changePassword} />
+			<input className="main-form-input" type="text" id="password" value={password} onChange={changePassword} />
 
 			<button type="submit" onClick={addUser}>Add User</button>
 		</form>

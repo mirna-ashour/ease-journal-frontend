@@ -41,13 +41,12 @@ function AddJournal({ setError, fetchJournals, profile }) {
 			<label htmlFor="title">
 				Entry Title
 			</label>
-			<input type="text" id="title" value={title} onChange={changeTitle} />
+			<input className="main-form-input" type="text" id="title" value={title} onChange={changeTitle} />
 
 			<label htmlFor="user">
 				Content
 			</label>
-			<input type="text" id="content" value={content} onChange={changeContent} />
-
+			<textarea className="form-textarea" type="text" id="content" value={content} onChange={changeContent} />
 			<button type="submit" onClick={addJournal}>Add</button>
 		</form>
 	);
