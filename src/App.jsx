@@ -8,7 +8,7 @@ import Users from './Components/Users';
 import Journals from './Components/Journals';
 import Login from './Components/Login';
 import Register from './Components/Register';
-import Logo from './EaseJournalLOGO_V1_vector.png';
+import Logo from './EaseJournalLOGO_V1_vectorBlue.png';
 
 function HomePage({ profile }) {
   const navigate = useNavigate();
