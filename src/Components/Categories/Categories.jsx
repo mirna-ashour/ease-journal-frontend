@@ -38,7 +38,7 @@ function AddCategoryForm({ setError, fetchCategories, profile }) {
 				Category Name
 			</label>
 			<input className="main-form-input" type="text" id="category_name" value={category_name} onChange={changeName} />
-			<button type="submit" onClick={addCategory}>Add</button>
+			<button type="submit" onClick={addCategory}>Add Category</button>
 		</form>
 	);
 }
@@ -68,33 +68,49 @@ function Categories({profile}) {
 		fetchCategories,
 		[],
 	);
+
+	const deleteCategory = (categoryId) => {
+		axios.delete(`${CATEGORIES_ENDPOINT}/delete/${categoryId}`)
+		  .then(() => {
+			fetchCategories(); // Fetch categories again to update the UI
+		  })
+		  .catch((e) => {
+			if (e.response && e.response.data && e.response.data.message) {
+				setError(e.response.data.message);
+			} else {
+				setError('There was a problem deleting this category.');
+			}
+		  });
+	};	
 	  
 	return (
 		<div className="wrapper">
-			<h1>
-				All Categories
-			</h1>
-			
-			{error && (
-				<div className="error-message">
-					{error}
+		  <h1>
+			All Categories
+		  </h1>
+	
+		  {error && (
+			<div className="error-message">
+			  {error}
+			</div>
+		  )}
+	
+		  <AddCategoryForm setError={setError} fetchCategories={fetchCategories} profile={profile} />
+	
+		  {categories.map((category) => (
+			<div key={category.category_id} className="category-container">
+			  <button onClick={() => deleteCategory(category.category_id)} className="delete-button">Delete</button>
+			  <Link to={`/journals/${category.category_id}`}>
+				<div>
+				  <h2>{category.category_name}</h2>
+				  <p>Created: {category.created}</p>
+				  {/* <p>Number of journals: {category.journals}</p> */}
 				</div>
-			)}
-
-			<AddCategoryForm setError={setError} fetchCategories={fetchCategories} profile={profile}/>
-
-			{categories.map((category) => (
-				<Link key={category.category_id} to={`/journals/${category.category_id}`}>
-					<div key={category.category_id} className="category-container">
-						<h2>{category.category_name}</h2>
-						<p>Created: {category.created}</p>
-						{/* <p>Number of journals: {category.journals}</p> */}
-					</div>
-				</Link>
-			))}
+			  </Link>
+			</div>
+		  ))}
 		</div>
 	);
 }
-
 
 export default Categories;
