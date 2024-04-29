@@ -30,8 +30,6 @@ html {
 .app-container {
   max-width: 100%;
   margin: auto;
-  /* padding: 20px; */
-  /* display: flex; */
   flex-direction: column;
   align-items: center;
 }
