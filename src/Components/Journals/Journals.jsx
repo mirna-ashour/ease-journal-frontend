@@ -83,7 +83,7 @@ function Journals({profile}) {
 	const deleteJournal = (journalId) => {
 	  axios.delete(`${JOURNALS_ENDPOINT}/delete/${journalId}`)
 		.then(() => {
-		  fetchJournals(); // Fetch journals again to update the UI
+		  setJournals(prevJournals => prevJournals.filter(journal => journal.journal_id !== journalId)); // Fetch journals again to update the UI
 		})
 		.catch((e) => {
 		  setError('There was a problem deleting the journal entry.');
