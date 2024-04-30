@@ -105,7 +105,7 @@ function Journals({profile}) {
 		<AddJournal setError={setError} fetchJournals={fetchJournals} profile={profile}/>
   
 		{journals.map((journal) => (
-		  <div key={journal.journal_id} className="category-container">
+		  <div key={journal.journal_id} className="journal-container">
 			<h2>Title: {journal.title}</h2>
 			<p>Created: {journal.timestamp}</p>
 			<p>Content: {journal.content}</p>

@@ -561,6 +561,10 @@ nav a:focus {
   position: relative; /* Set the container as relative to position the delete button */
 }
 
+.journal-container {
+  position: relative; /* Set the container as relative to position the delete button */
+}
+
 .delete-button {
   position: absolute;
   bottom: 10px;
