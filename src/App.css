@@ -52,15 +52,15 @@ button {
   cursor: pointer;
   border-radius: 5px;
   border: 2px solid transparent;
-  background: var(--dark-blue);
+  background-color: var(--dark-blue);
   color: var(--off-white);
   transition: background-color 0.3s, transform 0.3s;
 }
 
 button:hover,
 button:focus {
-  background-color: var(--poppy);
-  color: var(--off-white);
+  background-color: var(--light-blue);
+  color: var(--dark-blue);
   transform: translateY(-2px);
 }
 
@@ -420,7 +420,7 @@ h1 {
 *, button, a {
   transition: all 0.3s ease;
 }
-
+/* 
 button {
   font-size: 1.5rem;
   padding: 0.5rem 1rem;
@@ -437,7 +437,7 @@ button:hover {
   color: var(--background-color);
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
+} */
 
 .error-message {
   border: 2px solid var(--buff);
@@ -569,11 +569,14 @@ nav a:focus {
   position: absolute;
   bottom: 10px;
   right: 10px;
-  width: 28x; /* Adjust the width as needed */
-  height: 28px; /* Adjust the height as needed */
-  font-size: 14px; /* Adjust the font size as needed */
+  height: 32px; 
+  font-size: 16px;
+  background-color: rgb(203, 11, 11);
+  color: white;
+  border: none;
 }
 
-Link {
+.category-link {
   text-decoration: none;
+  color: #0077B6;
 }

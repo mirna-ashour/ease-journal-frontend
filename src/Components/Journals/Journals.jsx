@@ -58,6 +58,21 @@ function Journals({profile}) {
 	const [journals, setJournals] = useState([]);
 	const { categoryId } = useParams();
   
+	const deleteJournal = (journalId) => {
+		axios.delete(`${JOURNALS_ENDPOINT}/delete/${journalId}`)
+		  .then(() => {
+			fetchJournals(); 
+		  })
+		  .catch((e) => {
+			if (e.response && e.response.data && e.response.data.message) {
+				setError(e.response.data.message);
+			  } else {
+				setError('There was a problem deleting the journal.');
+			}
+		  });
+	  };
+
+
 	const fetchJournals = () => {
 	  axios.get(`${JOURNALS_ENDPOINT}/${categoryId}`)
 		.then((response) => {
@@ -77,18 +92,8 @@ function Journals({profile}) {
   
 	useEffect(
 	  fetchJournals,
-	  [categoryId],
+	  [],
 	);
-  
-	const deleteJournal = (journalId) => {
-	  axios.delete(`${JOURNALS_ENDPOINT}/delete/${journalId}`)
-		.then(() => {
-		  fetchJournals(); // Fetch journals again to update the UI
-		})
-		.catch((e) => {
-		  setError('There was a problem deleting the journal entry.');
-		});
-	};
   
 	return (
 	  <div className="wrapper">
@@ -110,6 +115,7 @@ function Journals({profile}) {
 			<p>Created: {journal.timestamp}</p>
 			<p>Content: {journal.content}</p>
 			<p>Last Modified: {journal.modified}</p>
+			<br></br><br></br>
 			<button onClick={() => deleteJournal(journal.journal_id)} className="delete-button">Delete</button>
 		  </div>
 		))}

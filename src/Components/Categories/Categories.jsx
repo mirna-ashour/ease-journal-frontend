@@ -72,7 +72,7 @@ function Categories({profile}) {
 	const deleteCategory = (categoryId) => {
 		axios.delete(`${CATEGORIES_ENDPOINT}/delete/${categoryId}`)
 		  .then(() => {
-			fetchCategories(); // Fetch categories again to update the UI
+			fetchCategories(); 
 		  })
 		  .catch((e) => {
 			if (e.response && e.response.data && e.response.data.message) {
@@ -88,6 +88,7 @@ function Categories({profile}) {
 		  <h1>
 			All Categories
 		  </h1>
+		  <br></br>
 	
 		  {error && (
 			<div className="error-message">
@@ -96,16 +97,18 @@ function Categories({profile}) {
 		  )}
 	
 		  <AddCategoryForm setError={setError} fetchCategories={fetchCategories} profile={profile} />
+		  <br></br>
 	
 		  {categories.map((category) => (
 			<div key={category.category_id} className="category-container">
-			  <button onClick={() => deleteCategory(category.category_id)} className="delete-button">Delete</button>
-			  <Link to={`/journals/${category.category_id}`}>
+			  <Link to={`/journals/${category.category_id}`} className="category-link">
 				<div>
 				  <h2>{category.category_name}</h2>
 				  <p>Created: {category.created}</p>
 				  {/* <p>Number of journals: {category.journals}</p> */}
 				</div>
+				<br></br>
+				<button onClick={() => deleteCategory(category.category_id)} className="delete-button">Delete</button>
 			  </Link>
 			</div>
 		  ))}
