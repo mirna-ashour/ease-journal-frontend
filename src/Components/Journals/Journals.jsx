@@ -57,21 +57,6 @@ function Journals({profile}) {
 	const [error, setError] = useState('');
 	const [journals, setJournals] = useState([]);
 	const { categoryId } = useParams();
-  
-	const deleteJournal = (journalId) => {
-		axios.delete(`${JOURNALS_ENDPOINT}/delete/${journalId}`)
-		  .then(() => {
-			fetchJournals(); 
-		  })
-		  .catch((e) => {
-			if (e.response && e.response.data && e.response.data.message) {
-				setError(e.response.data.message);
-			  } else {
-				setError('There was a problem deleting the journal.');
-			}
-		  });
-	  };
-
 
 	const fetchJournals = () => {
 	  axios.get(`${JOURNALS_ENDPOINT}/${categoryId}`)
@@ -94,6 +79,16 @@ function Journals({profile}) {
 	  fetchJournals,
 	  [],
 	);
+  
+	const deleteJournal = (journalId) => {
+	  axios.delete(`${JOURNALS_ENDPOINT}/delete/${journalId}`)
+		.then(() => {
+		  setJournals(prevJournals => prevJournals.filter(journal => journal.journal_id !== journalId)); // Fetch journals again to update the UI
+		})
+		.catch((e) => {
+		  setError('There was a problem deleting the journal entry.');
+		});
+	};
   
 	return (
 	  <div className="wrapper">
