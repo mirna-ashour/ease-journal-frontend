@@ -1,3 +1,156 @@
+/* Base reset and variables */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --dark-blue: #0077B6;
+  --light-blue: #CAF0F8;
+  --crisp-blue: #48CAE4;
+  --cool-gray: #023E8A;
+  --light-gray: #F1FAEE;
+  --off-white: #FFFFFF;
+  --poppy: #E63946; /* vibrant color for emphasis */
+  --sky-blue: #ADE8F4;
+  --lemon-chiffon: #FFFADD;
+  --buff: #F4A261;
+  --font-primary: 'Roboto', sans-serif;
+}
+
+body {
+  background-color: var(--light-blue);
+  font-family: var(--font-primary);
+  color: var(--cool-gray);
+  line-height: 1.6;
+}
+
+.app-container {
+  max-width: 100%;
+  margin: auto;
+}
+
+.logo-container img {
+  max-width: 100px; /* smaller logo for a cleaner header */
+  display: block;
+  margin: 0 auto; /* center logo */
+  padding: 1rem 0; /* add some space around the logo */
+}
+
+/* Utility classes */
+.text-center {
+  text-align: center;
+}
+
+/* Buttons */
+button {
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  background: var(--dark-blue);
+  color: var(--off-white);
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover,
+button:focus {
+  background-color: var(--poppy);
+  color: var(--off-white);
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+/* Form elements */
+input[type='text'],
+input[type='email'],
+input[type='password'],
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 2px solid var(--sky-blue);
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+input[type='text']:focus,
+input[type='email']:focus,
+input[type='password']:focus,
+textarea:focus {
+  border-color: var(--crisp-blue);
+  outline: none; /* remove focus outline */
+}
+
+/* Navigation bar */
+nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  background-color: var(--dark-blue);
+  padding: 1rem 0;
+}
+
+nav li {
+  padding: 0.5rem 1rem;
+}
+
+nav a {
+  color: var(--off-white);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+nav a:hover,
+nav a:focus {
+  color: var(--lemon-chiffon);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Use the fadeIn animation to make elements fade in */
+.fadeIn {
+  animation: fadeIn 1s ease-in;
+}
+
+/* Consistent padding and margins */
+section {
+  padding: 2rem;
+  margin: 2rem 0;
+  background-color: var(--off-white);
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Adjusting the container size for different sections */
+.wrapper, .login-container, .register-container, .category-container, .journal-container, .user-container {
+  max-width: 800px; /* increased max width for better use of space */
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: var(--off-white);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 *,
 *::before,
 *::after {
