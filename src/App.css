@@ -308,6 +308,12 @@ body {
   height: 60px;
 }
 
+.form-date-input {
+  width: 535px;
+  height: 60px;
+  border-color: var(--light-blue);
+}
+
 .form-textarea {
   width: 80%;
   height: 200px;

@@ -51,7 +51,7 @@ function AddUserForm({ setError, fetchUsers }) {
 			<label htmlFor="dob">
 				Date of Birth
 			</label>
-			<input className="main-form-input" type="date" id="dob" value={dob} onChange={changeDob} />
+			<input className="form-date-input" type="date" id="dob" value={dob} onChange={changeDob} />
 
 			<label htmlFor="email">
 				Email
@@ -90,6 +90,20 @@ function Users() {
 		}); // something bad
 	};
 
+	const deleteUser = (user_id) => {
+		axios.delete(`${USERS_ENDPOINT}/delete/${user_id}`)
+		  .then(() => {
+			fetchUsers(); 
+		  })
+		  .catch((e) => {
+			if (e.response && e.response.data && e.response.data.message) {
+				setError(e.response.data.message);
+			} else {
+				setError('There was a problem deleting this user.');
+			}
+		  });
+	};	
+
 	useEffect(
 		fetchUsers,
 		[],
@@ -110,13 +124,13 @@ function Users() {
 			<AddUserForm setError={setError} fetchUsers={fetchUsers} />
 
 			{users.map((user) => (
-				<div key={user.user_id} className="user-container">
-					 {/* <h2>User_id: {user.user_id}</h2> */}
-					 <h2>Email: {user.email}</h2>
-					 <p>Name: {user.first_name + ' ' + user.last_name}</p>
-					 {/* <p>Last Name: {user.last_name}</p> */}
-					 <p>DOB: {user.dob}</p>
-					 <p>Password: {user.password}</p>
+				<div key={user.user_id} className="category-container">
+					<h2>Email: {user.email}</h2>
+					<p>Name: {user.first_name + ' ' + user.last_name}</p>
+					<p>DOB: {user.dob}</p>
+					<p>Password: {user.password}</p>
+					<button onClick={() => deleteUser(user.user_id)} className="delete-button">Delete</button>
+					{/* <br></br><br></br> */}
 				</div>
 			))}
 		</div>
