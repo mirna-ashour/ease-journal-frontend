@@ -77,7 +77,7 @@ function Journals({profile}) {
   
 	useEffect(
 	  fetchJournals,
-	  [],
+	  [categoryId],
 	);
   
 	const deleteJournal = (journalId) => {
