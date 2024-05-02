@@ -108,8 +108,8 @@ function Categories({profile}) {
 				  {/* <p>Number of journals: {category.journals}</p> */}
 				</div>
 				<br></br>
-				<button onClick={() => deleteCategory(category.category_id)} className="delete-button">Delete</button>
 			  </Link>
+			  <button onClick={() => deleteCategory(category.category_id)} className="delete-button">Delete</button>
 			</div>
 		  ))}
 		</div>
