@@ -588,7 +588,7 @@ nav a:focus {
 }
 
 .save-button, .cancel-button {
-  bottom: 5px;
+  bottom: 3px;
 }
 
 .delete-button {

@@ -140,7 +140,7 @@ function Categories({profile}) {
 					<br></br>
 				  </Link>
 				  <button onClick={() => deleteCategory(category.category_id)} className="delete-button">Delete</button>
-			      <button onClick={() => setEditingCategory(category.category_id)} className="edit-button">Edit</button>
+			    <button onClick={() => handleEdit(category.category_id, category.category_name)} className="edit-button">Edit</button>
 				</>
 			  )}
 			</div>
