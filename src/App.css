@@ -142,8 +142,7 @@ section {
 }
 
 /* Adjusting the container size for different sections */
-.wrapper, .login-container, .register-container, .category-container, .journal-container, .user-container {
-  max-width: 800px; /* increased max width for better use of space */
+.wrapper{
   margin: 2rem auto;
   padding: 2rem;
   background-color: var(--off-white);
@@ -305,13 +304,13 @@ body {
 }
 
 .form-date-input {
-  width: 535px;
+  width: 100%;
   height: 60px;
   border-color: var(--light-blue);
 }
 
 .form-textarea {
-  width: 80%;
+  width: 100%;
   height: 200px;
 }
 
@@ -405,8 +404,8 @@ h1 {
 }
 
 /* Ensure that the primary elements have a maximum width for better readability on large screens */
-.wrapper, .login-container, .register-container, .category-container, .journal-container, .user-container {
-  max-width: 600px;
+.wrapper {
+  max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
 }
