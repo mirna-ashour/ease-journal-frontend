@@ -567,18 +567,32 @@ nav a:focus {
   position: relative; /* Set the container as relative to position the delete button */
 }
 
-.delete-button {
+.delete-button, .edit-button, .save-button, .cancel-button {
   position: absolute;
   bottom: 10px;
-  right: 10px;
   height: 32px; 
   font-size: 16px;
-  background-color: rgb(203, 11, 11);
   color: white;
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.delete-button, .cancel-button {
+  right: 10px;
+}
+
+.edit-button, .save-button {
+  right: 110px;
+}
+
+.save-button, .cancel-button {
+  bottom: 5px;
+}
+
+.delete-button {
+  background-color: rgb(203, 11, 11);
 }
 
 .category-link {

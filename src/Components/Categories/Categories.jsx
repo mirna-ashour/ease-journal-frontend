@@ -46,6 +46,8 @@ function AddCategoryForm({ setError, fetchCategories, profile }) {
 function Categories({profile}) {
 	const [error, setError] = useState('');
 	const [categories, setCategories] = useState([]);
+	const [editingCategory, setEditingCategory] = useState(null);
+	const [updatedCategoryName, setUpdatedCategoryName] = useState('');
 
 	const fetchCategories = () => {
 		axios.get(CATEGORIES_ENDPOINT)
@@ -81,7 +83,27 @@ function Categories({profile}) {
 				setError('There was a problem deleting this category.');
 			}
 		  });
-	};	
+	};
+
+	const updateCategoryName = () => {
+    axios.put(`${CATEGORIES_ENDPOINT}/${editingCategory}`, { category_name: updatedCategoryName })
+      .then(() => {
+        fetchCategories();
+        setEditingCategory(null);
+      })
+      .catch((e) => {
+        if (e.response && e.response.data && e.response.data.message) {
+      	  setError(e.response.data.message);
+        } else {
+          setError('There was a problem updating this category.');
+        }
+      });
+  };
+
+  const handleEdit = (categoryId, categoryName) => {
+    setEditingCategory(categoryId);
+    setUpdatedCategoryName(categoryName);
+  };
 	  
 	return (
 		<div className="wrapper">
@@ -101,15 +123,26 @@ function Categories({profile}) {
 	
 		  {categories.map((category) => (
 			<div key={category.category_id} className="category-container">
-			  <Link to={`/journals/${category.category_id}`} className="category-link">
-				<div>
-				  <h2>{category.category_name}</h2>
-				  <p>Created: {category.created}</p>
-				  {/* <p>Number of journals: {category.journals}</p> */}
-				</div>
-				<br></br>
-			  </Link>
-			  <button onClick={() => deleteCategory(category.category_id)} className="delete-button">Delete</button>
+			  {editingCategory === category.category_id ? (
+			  	<div>
+			  	  <input type="text" value={updatedCategoryName} placeholder="Category Name" onChange={(e) => setUpdatedCategoryName(e.target.value)}/>
+			  	  <button onClick={updateCategoryName} className="save-button">Save</button>
+			  	  <button onClick={() => setEditingCategory(null)} className="cancel-button">Cancel</button>
+			  	</div>
+			  ) : (
+			  	<>
+				  <Link to={`/journals/${category.category_id}`} className="category-link">
+					<div>
+					  <h2>{category.category_name}</h2>
+					  <p>Created: {category.created}</p>
+					  {/* <p>Number of journals: {category.journals}</p> */}
+					</div>
+					<br></br>
+				  </Link>
+				  <button onClick={() => deleteCategory(category.category_id)} className="delete-button">Delete</button>
+			      <button onClick={() => setEditingCategory(category.category_id)} className="edit-button">Edit</button>
+				</>
+			  )}
 			</div>
 		  ))}
 		</div>
