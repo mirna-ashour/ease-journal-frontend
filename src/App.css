@@ -279,10 +279,6 @@ body {
   margin-bottom: 1rem;
 }
 
-.register-form h2 {
-  margin-top: 8rem;
-}
-
 .register-form p {
   margin-top: 0px;
   font-size: 12px;
@@ -580,6 +576,9 @@ nav a:focus {
   background-color: rgb(203, 11, 11);
   color: white;
   border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .category-link {
