@@ -4,59 +4,80 @@
 </p>
 
 <p align="center">
-[EASE-JOURNAL]
+<strong>[EASE-JOURNAL]</strong>
 </p>
 
-# ease-journal-frontend
-The frontend of a journaling application powered by OpenAI's GPT3, offering journaling insights and prompts based on the user's journal entries.
+# Ease Journal Frontend
+
+The frontend of a journaling application powered by OpenAI's GPT-3, offering journaling insights and prompts based on the user's journal entries.
 
 This project is built using React and integrates with a Flask backend to manage journal entries, users, and categories. The frontend utilizes React Router for navigation between different pages and Axios for API requests.
 
-## Functionality of Each Page
+## Prerequisites
 
-### Home Page
-- Displays a welcoming message or a brief overview of the application.
+Before you begin, ensure you have met the following requirements:
 
-### Categories Page 
-- Allows users to add a new category with title and user ID.
-- Displays all categories available for journaling, including detailed information like category ID, category name, user ID, created date, and associated journals.
+- **Node.js**: You will need Node.js to run the React application. Install it from [nodejs.org](https://nodejs.org/).
+- **React**: After installing Node.js, install React by running `npm install react`.
 
-### Users Page
-- Provides user login functionality with error handling for incorrect passwords or login issues.
-- Displays a list of all current users and offers a feature for new user registration, including first name, last name, date of birth, and email fields.
+## Installation
 
-### Journals Page
-- Displays all journal entries submitted by users, with the ability to add new entries.
-- Each journal entry includes detailed information such as timestamp, title, prompt, content, and last modification date.
+Follow these steps to get your development environment set up:
 
-### Login Page
-- Offers users the ability to log in using their email and password. Includes error handling for incorrect login attempts.
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/yourusername/ease-journal-frontend.git
+   cd ease-journal-frontend
+   ```
 
-### Register Page
-- Allows new users to register by providing their first name, last name, date of birth, email, and password.
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-### Navigation Bar Includes
-- **Home:** Navigates to the home page.
-- **Categories:** Access to the Categories page for viewing or adding categories.
-- **Users:** User management via the Users page.
-- **Journals:** Viewing all journal entries through the Journals page.
+3. **Start the application**:
+   - On **Windows** using Ubuntu (WSL):
+     ```bash
+     cd /mnt/c/users/<your-username>/ease-journal-frontend
+     ./cloud.sh
+     ```
+   - On **MacOS**:
+     ```bash
+     npm start
+     ```
 
-## Setup and Run
+   The application will start running on `http://localhost:3000`.
 
-- Clone the repository and navigate to the project directory.
-- Run `npm install` to install all dependencies.
-- Use `npm start` to launch the application in development mode.
-- The app is accessible at `http://localhost:3000`.
+## Usage
+
+The application consists of several components, each responsible for different functionalities:
+
+- **Home Page**: Displays the logged-in user's information and a logout button.
+- **Categories Page**: Manage (add, update, delete) categories.
+- **Users Page**: Manage (add, delete) users and show user details.
+- **Journals Page**: Display and manage (add, delete) journal entries within a specific category.
+- **Login Page**: For user authentication.
+- **Register Page**: Allows new users to register.
+
+### Navigating the Application
+
+Use the navigation bar to move between different sections of the application. Depending on your current login status, you will have access to different functionalities.
 
 ## Building and Deployment
 
-- Execute `npm run build` to prepare the app for production in the `build` folder.
+To prepare the app for production, execute the following command:
+```bash
+npm run build
+```
+This will create a `build` folder, optimized for deployment.
 
 ## Flask API
+
 This React frontend interacts with the Ease Journal Flask API for backend operations, including CRUD actions for journals, categories, and user management.
 
 ## Contributing
-Contributions are welcome. For enhancements or features, please check the issues section or create a new issue or pull request.
+
+Contributions are welcome! Please refer to the issues section on GitHub to report bugs or request features.
 
 ## Recent Updates
 
@@ -65,4 +86,4 @@ Contributions are welcome. For enhancements or features, please check the issues
 - User authentication enhancements for security and usability.
 - Performance optimizations for faster loading times and smoother user interactions.
 
-Visit our GitHub repository for more information and ongoing updates.
+For more information and ongoing updates, visit our GitHub repository.
