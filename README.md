@@ -9,7 +9,7 @@
 
 # Ease Journal Frontend
 
-The frontend of a journaling application powered by OpenAI's GPT-3, offering journaling insights and prompts based on the user's journal entries.
+The frontend offering journaling insights and prompts based on the user's journal entries.
 
 This project is built using React and integrates with a Flask backend to manage journal entries, users, and categories. The frontend utilizes React Router for navigation between different pages and Axios for API requests.
 
