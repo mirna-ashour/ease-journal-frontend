@@ -24,7 +24,9 @@ function HomePage({ profile }) {
 
   return(
     <div className="profile-info">
+      <br></br>
       <h2>Personal information</h2>
+      <br></br>
       <p>First name: {profile.first_name}</p>
       <p>Last name: {profile.last_name}</p>
       <p>Dob: {profile.dob}</p>

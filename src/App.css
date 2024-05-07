@@ -229,6 +229,14 @@ body {
   margin-left: 5%;
 }
 
+.profile-info p {
+  font-size: 25px;
+}
+
+.profile-info h2{
+  font-size: 35px;
+}
+
 .login-page, .register-page {
   display: flex;
   justify-content: center;
