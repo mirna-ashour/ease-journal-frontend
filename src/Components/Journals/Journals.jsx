@@ -56,6 +56,9 @@ function AddJournal({ setError, fetchJournals, profile }) {
 function Journals({profile}) {
 	const [error, setError] = useState('');
 	const [journals, setJournals] = useState([]);
+	const [editingJournal, setEditingJournal] = useState(null);
+	const [updatedJournalTitle, setUpdatedJournalTitle] = useState('');
+	const [updatedJournalContent, setUpdatedJournalContent] = useState('');
 	const { categoryId } = useParams();
 
 	const fetchJournals = () => {
@@ -90,6 +93,27 @@ function Journals({profile}) {
 		});
 	};
   
+	const updateJournal = () => {
+		axios.put(`${JOURNALS_ENDPOINT}/${editingJournal}`, { title: updatedJournalTitle, content: updatedJournalContent})
+		  .then(() => {
+			fetchJournals();
+			setEditingJournal(null);
+		  })
+		  .catch((e) => {
+			if (e.response && e.response.data && e.response.data.message) {
+				setError(e.response.data.message);
+			} else {
+			  setError('There was a problem updating this journal.');
+			}
+		  });
+	};
+
+	const handleEdit = (journalID, journalTitle, journalContent) => {
+		setEditingJournal(journalID);
+		setUpdatedJournalTitle(journalTitle);
+		setUpdatedJournalContent(journalContent);
+	};
+
 	return (
 	  <div className="wrapper">
 		<h1>
@@ -106,12 +130,24 @@ function Journals({profile}) {
   
 		{journals.map((journal) => (
 		  <div key={journal.journal_id} className="journal-container">
-			<h2>Title: {journal.title}</h2>
-			<p>Created: {journal.timestamp}</p>
-			<p>Content: {journal.content}</p>
-			<p>Last Modified: {journal.modified}</p>
-			<br></br><br></br>
-			<button onClick={() => deleteJournal(journal.journal_id)} className="delete-button">Delete</button>
+			{editingJournal === journal.journal_id ? (
+			  <>
+				<input type="text" value={updatedJournalTitle} placeholder="Journal Title" onChange={(e) => setUpdatedJournalTitle(e.target.value)}/>
+				<textarea className="form-textarea" value={updatedJournalContent} placeholder="Journal Content" onChange={(e) => setUpdatedJournalContent(e.target.value)}/>
+				<button onClick={updateJournal} className="save-button">Save</button>
+				<button onClick={() => setEditingJournal(null)} className="cancel-button">Cancel</button>
+			  </>
+			) : (
+			  <>
+				<h2>Title: {journal.title}</h2>
+				<p>Created: {journal.timestamp}</p>
+				<p>Content: {journal.content}</p>
+				<p>Last Modified: {journal.modified}</p>
+				<br></br><br></br>
+				<button onClick={() => deleteJournal(journal.journal_id)} className="delete-button">Delete</button>
+				<button onClick={() => handleEdit(journal.journal_id, journal.title, journal.content)} className="edit-button">Edit</button>
+			  </>
+			)}
 		  </div>
 		))}
 	  </div>
