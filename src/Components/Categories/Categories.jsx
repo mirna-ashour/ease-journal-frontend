@@ -48,9 +48,12 @@ function Categories({profile}) {
 	const [categories, setCategories] = useState([]);
 	const [editingCategory, setEditingCategory] = useState(null);
 	const [updatedCategoryName, setUpdatedCategoryName] = useState('');
+	const userId = profile?.user_id;
+
 
 	const fetchCategories = () => {
-		axios.get(CATEGORIES_ENDPOINT)
+		//axios.get(CATEGORIES_ENDPOINT)
+		axios.get(`${CATEGORIES_ENDPOINT}/${userId}`)
 			.then((response) => {
 				const categoriesObject = response.data.Data;
 				const keys = Object.keys(categoriesObject);
@@ -68,7 +71,7 @@ function Categories({profile}) {
 
 	useEffect(
 		fetchCategories,
-		[],
+		[userId],
 	);
 
 	const deleteCategory = (categoryId) => {
