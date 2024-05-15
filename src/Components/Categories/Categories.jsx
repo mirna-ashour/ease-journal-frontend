@@ -77,7 +77,7 @@ function Categories({profile}) {
 	const deleteCategory = (categoryId) => {
 		axios.delete(`${CATEGORIES_ENDPOINT}/delete/${categoryId}`)
 		  .then(() => {
-			fetchCategories(); 
+			  setCategories(prevCategories => prevCategories.filter(category => category.category_id !== categoryId)); 
 		  })
 		  .catch((e) => {
 			if (e.response && e.response.data && e.response.data.message) {
