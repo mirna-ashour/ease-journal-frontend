@@ -63,9 +63,9 @@ function Categories({profile}) {
 			.catch((e) => { 
 				if (e.response && e.response.data && e.response.data.message) {
 			        setError(e.response.data.message);
-			    } else {
-			        setError('There was a problem fetching all categories.');
-			    }
+			    } // else {
+			    //     setError('There was a problem fetching all categories.');
+			    // }
 			}); // something bad
 	};
 
